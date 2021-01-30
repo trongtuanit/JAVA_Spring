@@ -1,0 +1,7 @@
+INDEX VERSION 1.131
+F:\HIT\JAVA_SPRING\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1500399302.index
+\tuan\src\main\resources
+F:\HIT\JAVA_SPRING\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\529657101.index
+\demoMVCApplication\src\main\resources
+F:\HIT\JAVA_SPRING\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3532475275.index
+\demo-v1\src\main\java

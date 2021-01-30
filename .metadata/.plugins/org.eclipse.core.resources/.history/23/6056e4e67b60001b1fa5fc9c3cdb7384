@@ -1,0 +1,9 @@
+<html>
+<body>
+	<form action="index.jsp/add" method="get">
+		<input type="text" name="t1" /> <br>
+		<input type="text" name="t2" /> <br>
+		<input type="submit"> 
+	</form>
+</body>
+</html>

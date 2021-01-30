@@ -1,0 +1,7 @@
+package com.example.tuanmc28;
+
+public interface Animal {
+	public void move() {
+		
+	}
+}

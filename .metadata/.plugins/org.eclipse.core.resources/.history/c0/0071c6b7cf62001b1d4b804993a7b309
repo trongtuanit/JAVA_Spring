@@ -1,0 +1,12 @@
+package com.example.tuanmc28;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class TuanmcApplication {
+	public static void main(String[] args) {
+		SpringApplication.run(TuanmcApplication.class, args);
+	}
+
+}

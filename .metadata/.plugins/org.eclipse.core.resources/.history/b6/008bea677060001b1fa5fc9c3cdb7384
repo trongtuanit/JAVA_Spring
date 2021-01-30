@@ -1,0 +1,11 @@
+package com.tuanmc;
+
+
+@Controller
+public class AppController {
+	
+	@ResquestMapping("/add")
+	public void add() {
+		System.out.println("Add function");
+	}
+}

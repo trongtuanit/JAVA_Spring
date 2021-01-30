@@ -1,0 +1,36 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<style>
+	table, th, td {
+	  border: 1px solid black;
+	  border-collapse: collapse;
+	}
+	th, td {
+	  padding: 15px;
+	  text-align: left;
+	}
+</style>
+<body>
+	
+<table style="width:100%">
+   <tr>
+    <th>Name</th>
+    <th>Age</th> 
+    <th>Breed</th>
+  </tr>
+  <tr th:each="dog : ${ListDog}>
+    <td th:text = ${dog.getName()}></td>
+    <td th:text = ${dog.getAge()}></td>
+    <td th:text = ${dog.getBreed()}></td>
+  </tr>
+  
+</table>
+
+	
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	
+<ul> 
+ <li th:each ="dog : ${listDog}" > <
+  <span th:text ="*{dog.getName()}" > </span> :
+  
+ </li >
+</ul>
+
+	
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<h1>Hello Huân nhé abc</h1>
+	<h1 th:text="${name}"></h1>
+	<ul th:each="item : ${listName}">
+		<li th:text = ${item}></li>
+	</ul>
+</body>
+</html>
+<!-- chạy file trong templates phải có thymeleaf -->

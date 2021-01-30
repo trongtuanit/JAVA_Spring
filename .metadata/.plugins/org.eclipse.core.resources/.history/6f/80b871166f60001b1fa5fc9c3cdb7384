@@ -1,0 +1,9 @@
+package com.tuanmc;
+
+
+@Controller
+public class AppController {
+	public void add() {
+		System.out.println("Add function");
+	}
+}

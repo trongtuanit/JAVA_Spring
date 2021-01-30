@@ -1,0 +1,6 @@
+<!DOCTYPE>
+<html>
+<body>
+	Add function result is <%=request.getAttribute("result") %>
+</body>
+</html>

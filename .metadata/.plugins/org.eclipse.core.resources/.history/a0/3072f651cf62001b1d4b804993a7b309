@@ -1,0 +1,11 @@
+package com.example.tuanmc28;
+
+public class Dog implements Animal{
+
+	@Override
+	public void move() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

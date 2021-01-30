@@ -1,0 +1,12 @@
+package com.example.tuanmc28;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class Dog implements Animal{
+	@Override
+	public void move() {
+		System.out.println("Walk");
+	}
+
+}
