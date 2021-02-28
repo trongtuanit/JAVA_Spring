@@ -1,5 +1,0 @@
-package com.example.tuanmc28;
-
-public class Fish implements Anim{
-
-}

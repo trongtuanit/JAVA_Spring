@@ -24,6 +24,7 @@
 	</section>
 	<section name="MavenProjectWizardLocationPage">
 		<list key="location">
+			<item value="F:\HIT\JAVA_SPRING\tuanmc\src\main\resources\templates\login.html"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
@@ -47,13 +48,10 @@
 	</section>
 	<section name="Maven2ProjectWizardArchifactPage">
 		<list key="package">
-			<item value="com.tuanmc.demoMVCApplication"/>
 		</list>
 		<list key="groupId">
-			<item value="com.tuanmc"/>
 		</list>
 		<list key="artifactId">
-			<item value="demoMVCApplication"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
@@ -87,5 +85,11 @@
 		</list>
 	</section>
 	<section name="org.eclipse.m2e.core.ui.internal.wizards.CustomArchetypeDialog">
+	</section>
+	<section name="org.eclipse.m2e.core.ui.internal.dialogs.MavenRepositorySearchDialog">
+		<item key="width" value="480"/>
+		<item key="height" value="641"/>
+		<item key="x" value="1094"/>
+		<item key="y" value="94"/>
 	</section>
 </section>
