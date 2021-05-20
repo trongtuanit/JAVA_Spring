@@ -1,0 +1,125 @@
+package com.computershop.dao.product;
+
+import java.sql.Timestamp;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import com.computershop.dao.Category;
+import com.computershop.dao.OrderItem;
+import com.computershop.dao.Product;
+import com.computershop.dao.ProductImage;
+import com.computershop.dao.ProductRating;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+@Entity
+@Table(name = "GraphicCards")
+public class GraphicCard extends Product {
+	@Id
+	@Column(name = "graphic_card_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
+	@Column(name = "dimensions")
+	private String dimensions;
+
+	@Column
+	private String weight;
+
+	@Column(name = "vga_memory")
+	private String VGAMemory;
+
+	@Column(name = "bandwidth")
+	private String bandwidth;
+
+	@OneToMany(mappedBy = "graphicCard", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JsonIgnore
+	private List<OrderItem> orderItems;
+
+	@Column
+	private String voltage;
+
+	public GraphicCard(Long id, String name, String brand, List<ProductImage> imageLinks, List<ProductRating> ratings,
+			Category categories, String description, String price, Integer saleOff, Integer amount,
+			Integer quantitySold, Timestamp createAt, Timestamp updateAt, Long id2, String dimensions, String weight,
+			String vGAMemory, String bandwidth, List<OrderItem> orderItems, String voltage) {
+		super(id, name, brand, imageLinks, ratings, categories, description, price, saleOff, amount, quantitySold,
+				createAt, updateAt);
+		id = id2;
+		this.dimensions = dimensions;
+		this.weight = weight;
+		VGAMemory = vGAMemory;
+		this.bandwidth = bandwidth;
+		this.orderItems = orderItems;
+		this.voltage = voltage;
+	}
+
+	public GraphicCard() {
+		super();
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getDimensions() {
+		return dimensions;
+	}
+
+	public void setDimensions(String dimensions) {
+		this.dimensions = dimensions;
+	}
+
+	public String getWeight() {
+		return weight;
+	}
+
+	public void setWeight(String weight) {
+		this.weight = weight;
+	}
+
+	public String getVGAMemory() {
+		return VGAMemory;
+	}
+
+	public void setVGAMemory(String vGAMemory) {
+		VGAMemory = vGAMemory;
+	}
+
+	public String getBandwidth() {
+		return bandwidth;
+	}
+
+	public void setBandwidth(String bandwidth) {
+		this.bandwidth = bandwidth;
+	}
+
+	public List<OrderItem> getOrderItems() {
+		return orderItems;
+	}
+
+	public void setOrderItems(List<OrderItem> orderItems) {
+		this.orderItems = orderItems;
+	}
+
+	public String getVoltage() {
+		return voltage;
+	}
+
+	public void setVoltage(String voltage) {
+		this.voltage = voltage;
+	}
+
+}
