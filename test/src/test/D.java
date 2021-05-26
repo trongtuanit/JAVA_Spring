@@ -1,15 +1,16 @@
 package test;
 
-public class D {
+public class D extends C{
 	private String textD;
 
-	public D(String a) {
-		super();
-		this.textD = a;
+
+	public D(String textC) {
+		super(textC);
 	}
 
-	public D() {
-		super();
+	public D(String textC, String textD) {
+		super(textC);
+		this.textD = textD;
 	}
 
 	public String getTextD() {

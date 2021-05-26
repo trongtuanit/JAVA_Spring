@@ -29,22 +29,22 @@ public class Mainboard extends Product {
 	private Long id;
 
 	@Column(name = "chipset_support")
-	private List<String> chipset; // chipset
+	private String chipset; // chipset
 
 	@Column(name = "cpu_support")
-	private List<String> cpu; // cpu hỗ trợ
+	private String cpu; // cpu hỗ trợ
 
 	@Column(name = "socket")
-	private List<String> socket; // socket ho tro
+	private String socket; // socket ho tro
 
 	@Column(name = "accessories")
-	private List<String> accessories; // phu kien
+	private String accessories; // phu kien
 
 	@Column(name = "formFactors")
 	private String formFactors; // kich thuoc
 
 	@Column(name = "OS_support")
-	private List<String> OSs; // os ho tro
+	private String OSs; // os ho tro
 
 	@OneToMany(mappedBy = "mainboard", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JsonIgnore
@@ -52,9 +52,8 @@ public class Mainboard extends Product {
 
 	public Mainboard(Long id, String name, String brand, List<ProductImage> imageLinks, List<ProductRating> ratings,
 			Category categories, String description, String price, Integer saleOff, Integer amount,
-			Integer quantitySold, Timestamp createAt, Timestamp updateAt, Long id2, List<String> chipset,
-			List<String> cpu, List<String> socket, List<String> accessories, String formFactors, List<String> oSs,
-			List<OrderItem> orderItems) {
+			Integer quantitySold, Timestamp createAt, Timestamp updateAt, Long id2, String chipset, String cpu,
+			String socket, String accessories, String formFactors, String oSs, List<OrderItem> orderItems) {
 		super(id, name, brand, imageLinks, ratings, categories, description, price, saleOff, amount, quantitySold,
 				createAt, updateAt);
 		id = id2;
@@ -67,8 +66,11 @@ public class Mainboard extends Product {
 		this.orderItems = orderItems;
 	}
 
-	public Mainboard() {
-		super();
+	public Mainboard(Long id, String name, String brand, List<ProductImage> imageLinks, List<ProductRating> ratings,
+			Category categories, String description, String price, Integer saleOff, Integer amount,
+			Integer quantitySold, Timestamp createAt, Timestamp updateAt) {
+		super(id, name, brand, imageLinks, ratings, categories, description, price, saleOff, amount, quantitySold,
+				createAt, updateAt);
 	}
 
 	public Long getId() {
@@ -79,35 +81,35 @@ public class Mainboard extends Product {
 		this.id = id;
 	}
 
-	public List<String> getChipset() {
+	public String getChipset() {
 		return chipset;
 	}
 
-	public void setChipset(List<String> chipset) {
+	public void setChipset(String chipset) {
 		this.chipset = chipset;
 	}
 
-	public List<String> getCpu() {
+	public String getCpu() {
 		return cpu;
 	}
 
-	public void setCpu(List<String> cpu) {
+	public void setCpu(String cpu) {
 		this.cpu = cpu;
 	}
 
-	public List<String> getSocket() {
+	public String getSocket() {
 		return socket;
 	}
 
-	public void setSocket(List<String> socket) {
+	public void setSocket(String socket) {
 		this.socket = socket;
 	}
 
-	public List<String> getAccessories() {
+	public String getAccessories() {
 		return accessories;
 	}
 
-	public void setAccessories(List<String> accessories) {
+	public void setAccessories(String accessories) {
 		this.accessories = accessories;
 	}
 
@@ -119,11 +121,11 @@ public class Mainboard extends Product {
 		this.formFactors = formFactors;
 	}
 
-	public List<String> getOSs() {
+	public String getOSs() {
 		return OSs;
 	}
 
-	public void setOSs(List<String> oSs) {
+	public void setOSs(String oSs) {
 		OSs = oSs;
 	}
 
@@ -134,5 +136,7 @@ public class Mainboard extends Product {
 	public void setOrderItems(List<OrderItem> orderItems) {
 		this.orderItems = orderItems;
 	}
+
+	
 
 }

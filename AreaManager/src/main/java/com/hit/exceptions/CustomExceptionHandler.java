@@ -13,7 +13,7 @@ public class CustomExceptionHandler {
 	public ErrorResponse handleNotFoundExcetion(NotFoundException ex, WebRequest req) {
 		return new ErrorResponse(404, ex.getMessage());
 	}
-	
+
 	@ExceptionHandler(DuplicateExceptions.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	public ErrorResponse handleDuplicateExcetion(NotFoundException ex, WebRequest req) {

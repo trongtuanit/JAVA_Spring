@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.computershop.dao.Manufacture;
 
 @Repository
-public interface ManufacctureRepository extends JpaRepository<Manufacture, Long>{
+public interface ManufactureRepository extends JpaRepository<Manufacture, Long>{
 
 }

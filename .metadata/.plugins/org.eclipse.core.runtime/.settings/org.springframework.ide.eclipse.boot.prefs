@@ -3,6 +3,7 @@ org.springframework.ide.eclipse.boot.wizard.PopularityTracker.cloud-stream=1
 org.springframework.ide.eclipse.boot.wizard.PopularityTracker.data-jdbc=4
 org.springframework.ide.eclipse.boot.wizard.PopularityTracker.data-jpa=10
 org.springframework.ide.eclipse.boot.wizard.PopularityTracker.devtools=6
+org.springframework.ide.eclipse.boot.wizard.PopularityTracker.mail=1
 org.springframework.ide.eclipse.boot.wizard.PopularityTracker.postgresql=5
 org.springframework.ide.eclipse.boot.wizard.PopularityTracker.security=5
 org.springframework.ide.eclipse.boot.wizard.PopularityTracker.sqlserver=10

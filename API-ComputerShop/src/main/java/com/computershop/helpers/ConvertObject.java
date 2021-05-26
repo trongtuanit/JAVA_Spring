@@ -1,5 +1,9 @@
 package com.computershop.helpers;
 
+import com.computershop.dao.User;
+import com.computershop.dto.SignUpDTO;
+import com.computershop.dto.UserDTO;
+
 public class ConvertObject {
 
 	public static String toSlug(String input) {
@@ -14,5 +18,32 @@ public class ConvertObject {
 				.replaceAll("ł", "l").replaceAll("đ", "d").replaceAll("\\s+", "-").replaceAll("&", "-and-")
 				.replaceAll("[^\\w\\-]+", "").replaceAll("\\-\\-+", "-").replaceAll("^-+", "").replaceAll("-+$", "");
 	}
+    public static User fromSignUpDTOToUserDAO(SignUpDTO signUpDTO) {
+        if (!Validate.checkSignUp(signUpDTO)) {
+            return null;
+        }
+        User user = new User();
+        user.setFirstName(signUpDTO.getFirstName().trim().replaceAll("\\s+", " "));
+        user.setLastName(signUpDTO.getLastName().trim().replaceAll("\\s+", " "));
+        user.setAddress(signUpDTO.getAddress().trim().replaceAll("\\s+", " "));
+        user.setUsername(signUpDTO.getUsername());
+        user.setRole("MEMBER");
+        user.setEmail(signUpDTO.getEmail());
+        user.setPhone(signUpDTO.getPhone());
+        return user;
+    }
+    
 
+    public static User fromUserDTOToUserDAO(UserDTO userDTO) {
+        User user = new User();
+        user.setFirstName(userDTO.getFirstName().trim().replaceAll("\\s+", " "));
+        user.setLastName(userDTO.getLastName().trim().replaceAll("\\s+", " "));
+        user.setUsername(userDTO.getUsername());
+        user.setAddress(userDTO.getAddress().trim().replaceAll("\\s+", " "));
+        user.setEmail(userDTO.getEmail());
+        user.setPhone(userDTO.getPhone());
+        user.setRole(userDTO.getRole());
+        return user;
+    }
 }
+

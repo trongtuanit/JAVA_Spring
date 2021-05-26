@@ -38,7 +38,7 @@ public class CPU extends Product {
 	@Column(name = "core")
 	private String cores;
 
-	@Column(name = "core")
+	@Column(name = "thread")
 	private String threads;
 
 	@Column(name = "base_frequency") // GHz

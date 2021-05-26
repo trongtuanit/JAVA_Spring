@@ -25,8 +25,58 @@
     "description": "A description for 'cloudinary.url'"
   },
   {
-    "name": "jwt.secret",
+    "name": "jwt.secret_key",
     "type": "java.lang.String",
-    "description": "A description for 'jwt.secret'"
+    "description": "A description for 'jwt.secret_key'"
+  },
+  {
+    "name": "user.username",
+    "type": "java.lang.String",
+    "description": "A description for 'user.username'"
+  },
+  {
+    "name": "user.password",
+    "type": "java.lang.String",
+    "description": "A description for 'user.password'"
+  },
+  {
+    "name": "user.first_name",
+    "type": "java.lang.String",
+    "description": "A description for 'user.firstname'"
+  },
+  {
+    "name": "user.last_name",
+    "type": "java.lang.String",
+    "description": "A description for 'user.lastname'"
+  },
+  {
+    "name": "user.email",
+    "type": "java.lang.String",
+    "description": "A description for 'user.email'"
+  },
+  {
+    "name": "user.phone",
+    "type": "java.lang.String",
+    "description": "A description for 'user.phone'"
+  },
+  {
+    "name": "user.address",
+    "type": "java.lang.String",
+    "description": "A description for 'user.address'"
+  },
+  {
+    "name": "user.role",
+    "type": "java.lang.String",
+    "description": "A description for 'user.role'"
+  },
+  {
+    "name": "mail_sender.email",
+    "type": "java.lang.String",
+    "description": "A description for 'mail_sender.email'"
+  },
+  {
+    "name": "mail_sender.password",
+    "type": "java.lang.String",
+    "description": "A description for 'mail_sender.password'"
   }
 ]}

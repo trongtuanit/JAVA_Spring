@@ -30,7 +30,7 @@ public class Case extends Product {
 
 	@Column(name = "material")
 	@Nationalized
-	private List<String> material;
+	private String material;
 
 	@Column(name = "type")
 	@Nationalized
@@ -50,7 +50,7 @@ public class Case extends Product {
 	public Case(Long id, String name, String brand, List<ProductImage> imageLinks, List<ProductRating> ratings,
 			Category categories, String description, String price, Integer saleOff, Integer amount,
 			Integer quantitySold, Timestamp createAt, Timestamp updateAt, Long id2, String dimensions,
-			List<String> material, String type, String color, String weight, String coolingMethod) {
+			String material, String type, String color, String weight, String coolingMethod) {
 		super(id, name, brand, imageLinks, ratings, categories, description, price, saleOff, amount, quantitySold,
 				createAt, updateAt);
 		id = id2;
@@ -82,11 +82,11 @@ public class Case extends Product {
 		this.dimensions = dimensions;
 	}
 
-	public List<String> getMaterial() {
+	public String getMaterial() {
 		return material;
 	}
 
-	public void setMaterial(List<String> material) {
+	public void setMaterial(String material) {
 		this.material = material;
 	}
 

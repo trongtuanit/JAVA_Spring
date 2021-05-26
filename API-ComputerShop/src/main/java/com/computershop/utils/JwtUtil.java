@@ -2,12 +2,15 @@ package com.computershop.utils;
 
 import java.util.Date;
 
+//import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+//import io.jsonwebtoken.SignatureException;
 
 @Service
 public class JwtUtil {
@@ -19,11 +22,29 @@ public class JwtUtil {
 	private Integer TIME_EXPIRATION;
 
 	public String extractUsername(String token) {
-		return Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody().getSubject();
+		return Jwts.parser()
+				.setSigningKey(SECRET_KEY)
+				.parseClaimsJws(token)
+				.getBody()
+				.getSubject();
 	}
 
+    public Long extractUserId(String token) {
+        Claims claims = Jwts.parser()
+                            .setSigningKey(SECRET_KEY)
+                            .parseClaimsJws(token)
+                            .getBody();
+
+        return Long.parseLong(claims.getSubject());
+    }
+	
+	
 	public Date extractExpiration(String token) {
-		return Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody().getExpiration();
+		return Jwts.parser()
+				.setSigningKey(SECRET_KEY)
+				.parseClaimsJws(token)
+				.getBody()
+				.getExpiration();
 	}
 
 	public Boolean isTokenExpired(String token) {
@@ -31,12 +52,15 @@ public class JwtUtil {
 	}
 
 	public Boolean validateToken(String token, UserDetails userDetails) {
-		final String username = extractUsername(token);
-		return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
+			final String username = extractUsername(token);
+			return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
+		
 	}
 
 	public String generateToken(UserDetails userDetails) {
-		return Jwts.builder().setSubject(userDetails.getUsername()).setIssuedAt(new Date(System.currentTimeMillis()))
+		return Jwts.builder()
+				.setSubject(userDetails.getUsername())
+				.setIssuedAt(new Date(System.currentTimeMillis()))
 				.setExpiration(new Date(System.currentTimeMillis() + TIME_EXPIRATION))
 				.signWith(SignatureAlgorithm.HS256, SECRET_KEY).compact();
 	}

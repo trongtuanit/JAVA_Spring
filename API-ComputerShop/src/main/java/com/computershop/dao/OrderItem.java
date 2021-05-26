@@ -37,7 +37,7 @@ public class OrderItem {
 	@JoinColumn(name = "order_id")
 	private Order order;
 	
-	@Column(name = "list_quantity_order", nullable = false)
+	@Column(name = "list_quantity_order", nullable = false) // neu goi constructor khong doi, list nay tu dong tao
 	private HashMap<Object, Integer> listQuantityOrder ;
 	
 	@ManyToOne(optional = true, fetch = FetchType.LAZY)
@@ -90,6 +90,7 @@ public class OrderItem {
 	}
 
 	public OrderItem() {
+		this.listQuantityOrder = new HashMap<Object, Integer>();
 		this.listQuantityOrder.put(this.ram, 0);
 		this.listQuantityOrder.put(this.cpu, 0);
 		this.listQuantityOrder.put(this.mainboard, 0);
