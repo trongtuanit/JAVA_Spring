@@ -58,7 +58,7 @@ public class main {
         case  2:
         	System.out.println("nhap so n");
             n = scan.nextInt();
-            System.out.println("nhap so n");
+            System.out.println("nhap so x");
             float x = scan.nextFloat();
             System.out.println("sin(x): " + calc(x, n));
             break;
