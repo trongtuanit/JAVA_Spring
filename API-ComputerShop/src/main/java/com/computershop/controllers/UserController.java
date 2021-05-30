@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -129,29 +130,6 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(user);
     }
     
-    @PutMapping("/{userId}")
-    @PreAuthorize("@userAuthorizer.authorizeUser(authentication, #userId)")
-    public ResponseEntity<?> editUserClient(@RequestBody UserDTO userDTO, @PathVariable("userId") Long userId) {
-        Optional<User> optionalUser = userRepository.findById(userId);
-        if (!optionalUser.isPresent()) {
-            throw new NotFoundException("User not found");
-        }
-        User user = optionalUser.get();
-
-        if (CheckValid.checkUpdateProfile(userDTO)) {
-
-            user.setFirstName(userDTO.getFirstName().trim().replaceAll("\\s+", " "));
-            user.setLastName(userDTO.getLastName().trim().replaceAll("\\s+", " "));
-            user.setEmail(userDTO.getEmail());
-            user.setPhone(userDTO.getPhone());
-            user.setAddress(userDTO.getAddress().trim().replaceAll("\\s+", " "));
-
-            User updatedUser = userRepository.save(user);
-
-            return ResponseEntity.status(HttpStatus.OK).body(updatedUser);
-        }
-        throw new InvalidException("Invalid user");
-    }
 
 
     @DeleteMapping("/{userId}")
@@ -162,7 +140,7 @@ public class UserController {
             throw new NotFoundException("User not found");
         }
 
-        if (!optionalUser.get().getSaleOrders().isEmpty()) {
+        if (!optionalUser.get().getOrders().isEmpty()) {
             throw new InvalidException("Delete failed");
         }
 

@@ -24,8 +24,8 @@ public class GenerateRandomPassword {
 		}
 		// get a random index of template string
 		int randomIdxSpecialChars = random.nextInt(secialChars.length());
-		int randomIdxNumbers = random.nextInt(secialChars.length());
-		int randomIdxUpperChars = random.nextInt(secialChars.length());
+		int randomIdxNumbers = random.nextInt(numbers.length());
+		int randomIdxUpperChars = random.nextInt(upperChars.length());
 		
 		// add special char to the end of sb
 		sb.append(secialChars.charAt(randomIdxSpecialChars));

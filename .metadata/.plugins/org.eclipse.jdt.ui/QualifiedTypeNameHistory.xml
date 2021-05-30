@@ -1,16 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="com.computershop.models.AuthenticationRequest"/>
-<fullyQualifiedTypeName name="org.springframework.security.authentication.AuthenticationManager"/>
-<fullyQualifiedTypeName name="org.springframework.security.authentication.UsernamePasswordAuthenticationToken"/>
-<fullyQualifiedTypeName name="javax.security.auth.login.LoginException"/>
-<fullyQualifiedTypeName name="org.springframework.security.core.userdetails.UserDetails"/>
-<fullyQualifiedTypeName name="com.computershop.models.AuthenticationResponse"/>
-<fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
-<fullyQualifiedTypeName name="org.springframework.security.web.authentication.WebAuthenticationDetailsSource"/>
-<fullyQualifiedTypeName name="org.springframework.security.core.context.SecurityContextHolder"/>
-<fullyQualifiedTypeName name="java.util.Scanner"/>
-<fullyQualifiedTypeName name="com.computershop.dto.SignUpDTO"/>
 <fullyQualifiedTypeName name="java.lang.RuntimeException"/>
 <fullyQualifiedTypeName name="com.computershop.exceptions.ForbiddenException"/>
 <fullyQualifiedTypeName name="io.jsonwebtoken.SignatureException"/>
@@ -21,13 +10,10 @@
 <fullyQualifiedTypeName name="org.springframework.data.domain.PageRequest"/>
 <fullyQualifiedTypeName name="org.springframework.http.HttpStatus"/>
 <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
-<fullyQualifiedTypeName name="java.util.HashMap"/>
 <fullyQualifiedTypeName name="com.computershop.repositories.UserRepository"/>
 <fullyQualifiedTypeName name="org.springframework.security.crypto.password.PasswordEncoder"/>
 <fullyQualifiedTypeName name="org.springframework.boot.CommandLineRunner"/>
 <fullyQualifiedTypeName name="com.computershop.dao.User"/>
-<fullyQualifiedTypeName name="org.springframework.context.annotation.Configuration"/>
-<fullyQualifiedTypeName name="org.springframework.context.annotation.Bean"/>
 <fullyQualifiedTypeName name="org.springframework.mail.javamail.JavaMailSenderImpl"/>
 <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Value"/>
 <fullyQualifiedTypeName name="java.util.Properties"/>
@@ -41,7 +27,6 @@
 <fullyQualifiedTypeName name="org.springframework.http.ResponseEntity"/>
 <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RestController"/>
 <fullyQualifiedTypeName name="com.computershop.dto.Email"/>
-<fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="org.springframework.web.multipart.MultipartFile"/>
 <fullyQualifiedTypeName name="org.springframework.security.crypto.codec.Utf8"/>
 <fullyQualifiedTypeName name="java.security.SecureRandom"/>
@@ -60,4 +45,19 @@
 <fullyQualifiedTypeName name="com.computershop.helpers.GenerateRandomPassword"/>
 <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PatchMapping"/>
 <fullyQualifiedTypeName name="java.lang.Exception"/>
+<fullyQualifiedTypeName name="java.util.Scanner"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.DeleteMapping"/>
+<fullyQualifiedTypeName name="com.computershop.dto.ForgotPasswordDTO"/>
+<fullyQualifiedTypeName name="org.springframework.context.annotation.Configuration"/>
+<fullyQualifiedTypeName name="org.springframework.context.annotation.Bean"/>
+<fullyQualifiedTypeName name="io.swagger.v3.oas.models.OpenAPI"/>
+<fullyQualifiedTypeName name="io.swagger.v3.oas.models.servers.Server"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="io.swagger.v3.oas.models.info.Info"/>
+<fullyQualifiedTypeName name="io.swagger.v3.oas.models.info.Contact"/>
+<fullyQualifiedTypeName name="io.swagger.v3.oas.models.info.License"/>
+<fullyQualifiedTypeName name="java.util.HashMap"/>
+<fullyQualifiedTypeName name="java.util.Map"/>
 </qualifiedTypeNameHistroy>

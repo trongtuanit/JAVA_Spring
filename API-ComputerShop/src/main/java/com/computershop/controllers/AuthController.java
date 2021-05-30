@@ -18,13 +18,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 //import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+//import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.computershop.dao.User;
+import com.computershop.dto.ForgotPasswordDTO;
 import com.computershop.dto.SignUpDTO;
 import com.computershop.exceptions.DuplicateException;
 import com.computershop.exceptions.InvalidException;
@@ -117,9 +118,9 @@ public class AuthController {
 	}
 	
 	@PostMapping("/forgot-password")
-	public ResponseEntity<?> forgotPassword(@PathVariable("userId") Long userId) throws Exception {
+	public ResponseEntity<?> forgotPassword(@RequestBody ForgotPasswordDTO forgotPasswordDTO) throws Exception {
 		// get user
-		Optional<User> optionalUser = userRepository.findById(userId);
+		Optional<User> optionalUser = userRepository.findById(forgotPasswordDTO.getUserId());
         if (!optionalUser.isPresent()) {
             throw new NotFoundException("User not found");
         }
