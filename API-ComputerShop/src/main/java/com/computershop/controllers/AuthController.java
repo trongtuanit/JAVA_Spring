@@ -40,7 +40,7 @@ import com.computershop.services.MyUserDetailsService;
 import com.computershop.utils.JwtUtil;
 
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping(value = "/api/auth")
 public class AuthController {
 	
 	@Autowired

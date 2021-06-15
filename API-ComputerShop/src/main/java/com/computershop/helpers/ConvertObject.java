@@ -1,6 +1,8 @@
 package com.computershop.helpers;
 
+import com.computershop.dao.Manufacture;
 import com.computershop.dao.User;
+import com.computershop.dto.ManufactureDTO;
 import com.computershop.dto.SignUpDTO;
 import com.computershop.dto.UserDTO;
 
@@ -44,6 +46,20 @@ public class ConvertObject {
         user.setPhone(userDTO.getPhone());
         user.setRole(userDTO.getRole());
         return user;
+    }
+    
+    public static Manufacture fromManufactureDTOToDAO(ManufactureDTO manufactureDTO) {
+		Manufacture manufacture = new Manufacture();
+		manufacture.setName(manufactureDTO.getName());
+		manufacture.setNation(manufactureDTO.getNation());
+		return manufacture;
+    }
+    
+    
+    
+    public static String fromSlugToString(String slug) {
+    	return slug.replaceAll("-", " ").replaceAll("%20", " ");
+    	
     }
 }
 

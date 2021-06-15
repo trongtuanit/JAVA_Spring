@@ -66,13 +66,20 @@ public class CPU extends Product {
 	@JsonIgnore
 	private List<OrderItem> orderItems;
 
-	public CPU(Long id, String name, String brand, List<ProductImage> imageLinks, List<ProductRating> ratings,
-			Category categories, String description, String price, Integer saleOff, Integer amount,
-			Integer quantitySold, Timestamp createAt, Timestamp updateAt, Long id2, String codeName, String cPUFamily,
-			String cores, String threads, String baseFrequency, String maxFrequency, String pCIExpress, String busSpeed,
-			String tdp, String socket, String cache, List<OrderItem> orderItems) {
-		super(id, name, brand, imageLinks, ratings, categories, description, price, saleOff, amount, quantitySold,
-				createAt, updateAt);
+	public CPU(Long id, String name, String brand, List<ProductImage> productImages, List<ProductRating> ratings,
+			Category categories, Category manufactures, String description, String price, Integer saleOff,
+			Integer amount, Integer quantitySold, String warranty, Timestamp createAt, Timestamp updateAt) {
+		super(id, name, brand, productImages, ratings, categories, manufactures, description, price, saleOff, amount,
+				quantitySold, warranty, createAt, updateAt);
+	}
+
+	public CPU(Long id, String name, String brand, List<ProductImage> productImages, List<ProductRating> ratings,
+			Category categories, Category manufactures, String description, String price, Integer saleOff,
+			Integer amount, Integer quantitySold, String warranty, Timestamp createAt, Timestamp updateAt, Long id2,
+			String codeName, String cPUFamily, String cores, String threads, String baseFrequency, String maxFrequency,
+			String pCIExpress, String busSpeed, String tdp, String socket, String cache, List<OrderItem> orderItems) {
+		super(id, name, brand, productImages, ratings, categories, manufactures, description, price, saleOff, amount,
+				quantitySold, warranty, createAt, updateAt);
 		id = id2;
 		this.codeName = codeName;
 		CPUFamily = cPUFamily;

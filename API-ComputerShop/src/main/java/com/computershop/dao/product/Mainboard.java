@@ -50,12 +50,24 @@ public class Mainboard extends Product {
 	@JsonIgnore
 	private List<OrderItem> orderItems;
 
-	public Mainboard(Long id, String name, String brand, List<ProductImage> imageLinks, List<ProductRating> ratings,
-			Category categories, String description, String price, Integer saleOff, Integer amount,
-			Integer quantitySold, Timestamp createAt, Timestamp updateAt, Long id2, String chipset, String cpu,
-			String socket, String accessories, String formFactors, String oSs, List<OrderItem> orderItems) {
-		super(id, name, brand, imageLinks, ratings, categories, description, price, saleOff, amount, quantitySold,
-				createAt, updateAt);
+	
+
+	
+
+	public Mainboard(Long id, String name, String brand, List<ProductImage> productImages, List<ProductRating> ratings,
+			Category categories, Category manufactures, String description, String price, Integer saleOff,
+			Integer amount, Integer quantitySold, String warranty, Timestamp createAt, Timestamp updateAt) {
+		super(id, name, brand, productImages, ratings, categories, manufactures, description, price, saleOff, amount,
+				quantitySold, warranty, createAt, updateAt);
+	}
+
+	public Mainboard(Long id, String name, String brand, List<ProductImage> productImages, List<ProductRating> ratings,
+			Category categories, Category manufactures, String description, String price, Integer saleOff,
+			Integer amount, Integer quantitySold, String warranty, Timestamp createAt, Timestamp updateAt, Long id2,
+			String chipset, String cpu, String socket, String accessories, String formFactors, String oSs,
+			List<OrderItem> orderItems) {
+		super(id, name, brand, productImages, ratings, categories, manufactures, description, price, saleOff, amount,
+				quantitySold, warranty, createAt, updateAt);
 		id = id2;
 		this.chipset = chipset;
 		this.cpu = cpu;
@@ -64,13 +76,6 @@ public class Mainboard extends Product {
 		this.formFactors = formFactors;
 		OSs = oSs;
 		this.orderItems = orderItems;
-	}
-
-	public Mainboard(Long id, String name, String brand, List<ProductImage> imageLinks, List<ProductRating> ratings,
-			Category categories, String description, String price, Integer saleOff, Integer amount,
-			Integer quantitySold, Timestamp createAt, Timestamp updateAt) {
-		super(id, name, brand, imageLinks, ratings, categories, description, price, saleOff, amount, quantitySold,
-				createAt, updateAt);
 	}
 
 	public Long getId() {

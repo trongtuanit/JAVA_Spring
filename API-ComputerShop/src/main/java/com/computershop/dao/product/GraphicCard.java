@@ -47,12 +47,20 @@ public class GraphicCard extends Product {
 	@Column
 	private String voltage;
 
-	public GraphicCard(Long id, String name, String brand, List<ProductImage> imageLinks, List<ProductRating> ratings,
-			Category categories, String description, String price, Integer saleOff, Integer amount,
-			Integer quantitySold, Timestamp createAt, Timestamp updateAt, Long id2, String dimensions, String weight,
-			String vGAMemory, String bandwidth, List<OrderItem> orderItems, String voltage) {
-		super(id, name, brand, imageLinks, ratings, categories, description, price, saleOff, amount, quantitySold,
-				createAt, updateAt);
+	public GraphicCard(Long id, String name, String brand, List<ProductImage> productImages, List<ProductRating> ratings,
+			Category categories, Category manufactures, String description, String price, Integer saleOff,
+			Integer amount, Integer quantitySold, String warranty, Timestamp createAt, Timestamp updateAt) {
+		super(id, name, brand, productImages, ratings, categories, manufactures, description, price, saleOff, amount,
+				quantitySold, warranty, createAt, updateAt);
+	}
+
+	public GraphicCard(Long id, String name, String brand, List<ProductImage> productImages, List<ProductRating> ratings,
+			Category categories, Category manufactures, String description, String price, Integer saleOff,
+			Integer amount, Integer quantitySold, String warranty, Timestamp createAt, Timestamp updateAt, Long id2,
+			String dimensions, String weight, String vGAMemory, String bandwidth, List<OrderItem> orderItems,
+			String voltage) {
+		super(id, name, brand, productImages, ratings, categories, manufactures, description, price, saleOff, amount,
+				quantitySold, warranty, createAt, updateAt);
 		id = id2;
 		this.dimensions = dimensions;
 		this.weight = weight;

@@ -1,4 +1,4 @@
-package com.computershop.dto;
+package com.computershop.models;
 
 
 public class Email {

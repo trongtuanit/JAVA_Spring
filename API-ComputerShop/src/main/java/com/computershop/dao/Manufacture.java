@@ -1,17 +1,23 @@
 package com.computershop.dao;
 
 import java.sql.Timestamp;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Nationalized;
 import org.hibernate.annotations.UpdateTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 
@@ -23,17 +29,17 @@ public class Manufacture {
 	@Column(name = "manufacture_id")
 	private Long manufactureId;
 	
-	@Column(name = "name", nullable = false)
+	@Column(name = "name", nullable = false, unique = true)
 	@Nationalized
 	private String name;
 	
-	@Column(name = "warranty_summary", nullable = false)
+	@Column(name = "name", nullable = false)
 	@Nationalized
-	private String WarrantySummary;
+	private String nation;
 	
-	@Column(name = "covered_in_warranty", nullable = false)
-	@Nationalized
-	private String CoveredInWarranty;
+	@OneToMany(mappedBy = "manufactures", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JsonIgnore
+	private List<Product> products;
 	
 	@CreationTimestamp
 	private Timestamp createAt;
@@ -41,13 +47,13 @@ public class Manufacture {
 	@UpdateTimestamp
 	private Timestamp updateAt;
 
-	public Manufacture(Long manufactureId, String name, String warrantySummary, String coveredInWarranty,
-			Timestamp createAt, Timestamp updateAt) {
+	public Manufacture(Long manufactureId, String name, String nation, List<Product> products, Timestamp createAt,
+			Timestamp updateAt) {
 		super();
 		this.manufactureId = manufactureId;
 		this.name = name;
-		WarrantySummary = warrantySummary;
-		CoveredInWarranty = coveredInWarranty;
+		this.nation = nation;
+		this.products = products;
 		this.createAt = createAt;
 		this.updateAt = updateAt;
 	}
@@ -72,21 +78,6 @@ public class Manufacture {
 		this.name = name;
 	}
 
-	public String getWarrantySummary() {
-		return WarrantySummary;
-	}
-
-	public void setWarrantySummary(String warrantySummary) {
-		WarrantySummary = warrantySummary;
-	}
-
-	public String getCoveredInWarranty() {
-		return CoveredInWarranty;
-	}
-
-	public void setCoveredInWarranty(String coveredInWarranty) {
-		CoveredInWarranty = coveredInWarranty;
-	}
 
 	public Timestamp getCreateAt() {
 		return createAt;
@@ -102,6 +93,22 @@ public class Manufacture {
 
 	public void setUpdateAt(Timestamp updateAt) {
 		this.updateAt = updateAt;
+	}
+
+	public String getNation() {
+		return nation;
+	}
+
+	public void setNation(String nation) {
+		this.nation = nation;
+	}
+
+	public List<Product> getProducts() {
+		return products;
+	}
+
+	public void setProducts(List<Product> products) {
+		this.products = products;
 	}
 	
 	

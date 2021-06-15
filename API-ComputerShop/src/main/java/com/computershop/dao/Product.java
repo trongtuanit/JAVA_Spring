@@ -40,7 +40,7 @@ public class Product {
 	
 	@OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JsonIgnore
-	private List<ProductImage> imageLinks;
+	private List<ProductImage> productImages;
 	
 	@OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JsonIgnore
@@ -49,6 +49,10 @@ public class Product {
 	@ManyToOne
 	@JoinColumn(name = "category_id")
 	private Category categories;
+	
+	@ManyToOne
+	@JoinColumn(name = "manufacture_id")
+	private Category manufactures;
 	
 	@Column(name = "description")
 	@Nationalized
@@ -66,27 +70,37 @@ public class Product {
 	@Column(name = "quantity_sold", nullable = false)
 	private Integer quantitySold;
 	
+	@Column(name = "warranty", nullable = false)
+	private String warranty;
+	
 	@CreationTimestamp
 	private Timestamp createAt;
 	
 	@UpdateTimestamp
 	private Timestamp updateAt;
 
-	public Product(Long id, String name, String brand, List<ProductImage> imageLinks, List<ProductRating> ratings,
-			Category categories, String description, String price, Integer saleOff, Integer amount,
-			Integer quantitySold, Timestamp createAt, Timestamp updateAt) {
+	
+	
+
+
+
+	public Product(Long id, String name, String brand, List<ProductImage> productImages, List<ProductRating> ratings,
+			Category categories, Category manufactures, String description, String price, Integer saleOff,
+			Integer amount, Integer quantitySold, String warranty, Timestamp createAt, Timestamp updateAt) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.brand = brand;
-		this.imageLinks = imageLinks;
+		this.productImages = productImages;
 		Ratings = ratings;
 		this.categories = categories;
+		this.manufactures = manufactures;
 		this.description = description;
 		this.price = price;
 		this.saleOff = saleOff;
 		this.amount = amount;
 		this.quantitySold = quantitySold;
+		this.warranty = warranty;
 		this.createAt = createAt;
 		this.updateAt = updateAt;
 	}
@@ -119,12 +133,12 @@ public class Product {
 		this.brand = brand;
 	}
 
-	public List<ProductImage> getImageLinks() {
-		return imageLinks;
+	public List<ProductImage> getProductImages() {
+		return productImages;
 	}
 
-	public void setImageLinks(List<ProductImage> imageLinks) {
-		this.imageLinks = imageLinks;
+	public void setProductImages(List<ProductImage> productImages) {
+		this.productImages = productImages;
 	}
 
 	public List<ProductRating> getRatings() {
@@ -197,6 +211,26 @@ public class Product {
 
 	public void setUpdateAt(Timestamp updateAt) {
 		this.updateAt = updateAt;
+	}
+
+	public String getWarranty() {
+		return warranty;
+	}
+
+	public void setWarranty(String warranty) {
+		this.warranty = warranty;
+	}
+
+
+
+	public Category getManufactures() {
+		return manufactures;
+	}
+
+
+
+	public void setManufactures(Category manufactures) {
+		this.manufactures = manufactures;
 	}
 	
 	
