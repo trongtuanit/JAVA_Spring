@@ -7,5 +7,6 @@ public class main {
 		Teacher teacher = new Teacher();
 		teacher.input();
 		teacher.output();
+		teacher.calc();
 	}
 }

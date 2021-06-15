@@ -68,7 +68,7 @@ public class Teacher extends Employee{
 		System.out.println("Nhap subject code: ");
 		int sjCode = scanner.nextInt();
 		subject.setCode(sjCode);
-		
+		scanner.nextLine();
 
 		System.out.println("Nhap subject name: ");
 		String sjName = scanner.nextLine();
@@ -128,11 +128,11 @@ public class Teacher extends Employee{
 		System.out.println("Salary: " + this.getSalary());
 		System.out.println("Hours: " + this.getHours());
 		
-//		System.out.println("Ngay: "+ this.date.getDay());
-//		System.out.println("thang: "+ this.date.getMonth());
-//		System.out.println("nam: "+ this.date.getYear());
-//		System.out.println("SubjectCode: " + this.subject.getCode());
-//		System.out.println("SubjectName: " + this.subject.getName());
+		System.out.println("Ngay: "+ this.date.getDay());
+		System.out.println("thang: "+ this.date.getMonth());
+		System.out.println("nam: "+ this.date.getYear());
+		System.out.println("SubjectCode: " + this.subject.getCode());
+		System.out.println("SubjectName: " + this.subject.getName());
 		
 	}
 	
