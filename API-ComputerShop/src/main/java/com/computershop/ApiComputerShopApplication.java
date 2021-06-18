@@ -1,8 +1,6 @@
 package com.computershop;
 
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,18 +18,9 @@ import com.computershop.repositories.UserRepository;
 
 @SpringBootApplication
 public class ApiComputerShopApplication implements CommandLineRunner {
-	@Value("${cloudinary.cloud_name}")
-	private String cloudName;
-
-	@Value("${cloudinary.api_key}")
-	private String apiKey;
-
-	@Value("${cloudinary.api_secret}")
-	private String apiSecret;
-
 	@Value("${cloudinary.url}")
 	private String cloudinaryUrl;
-
+	
 	@Value("${user.first_name}")
 	private String firstName;
 
@@ -66,16 +55,10 @@ public class ApiComputerShopApplication implements CommandLineRunner {
 	private DeliveryRepository deliveryRepository;
 	
 	@Bean
-	public Cloudinary cloudinaryConfig() {
-		Cloudinary cloudinary = new Cloudinary(cloudinaryUrl);
-		;
-		Map<String, String> config = new HashMap<String, String>();
-		config.put("cloud_name", cloudName);
-		config.put("api_key", apiKey);
-		config.put("api_secret", apiSecret);
-		cloudinary = new Cloudinary(config);
-		return cloudinary;
-	}
+    public Cloudinary cloudinary() {
+        return new Cloudinary(cloudinaryUrl);
+    }
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(ApiComputerShopApplication.class, args);
