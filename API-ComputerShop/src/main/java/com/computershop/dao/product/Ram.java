@@ -1,24 +1,14 @@
 package com.computershop.dao.product;
 
-import java.sql.Timestamp;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.computershop.dao.Category;
-import com.computershop.dao.OrderItem;
 import com.computershop.dao.Product;
-import com.computershop.dao.ProductImage;
-import com.computershop.dao.ProductRating;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "Rams")
@@ -43,55 +33,26 @@ public class Ram extends Product {
 	@Column(name = "dimm_type")
 	private String DimmType; // UDIMM, RDIMM...
 
-	@OneToMany(mappedBy = "ram", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JsonIgnore
-	private List<OrderItem> orderItems;
-
 	public Ram(Product product) {
 		super(product.getId(), product.getName(), product.getBrand(), product.getProductImages(), product.getRatings(),
 				product.getCategories(), product.getManufactures(), product.getDescription(), product.getPrice(),
 				product.getSaleOff(), product.getAmount(), product.getQuantitySold(), product.getWarranty(),
-				product.getCreateAt(), product.getUpdateAt());
+				product.getCreateAt(), product.getUpdateAt(), product.getOrderItems());
 
 	}
-	
-	public Ram(Product product, Long id2,
-			String partNumber, String capacity, String dDR, String typeOfBus, String dimmType,
-			List<OrderItem> orderItems) {
+
+	public Ram(Product product, Long id2, String partNumber, String capacity, String dDR, String typeOfBus,
+			String dimmType) {
 		super(product.getId(), product.getName(), product.getBrand(), product.getProductImages(), product.getRatings(),
 				product.getCategories(), product.getManufactures(), product.getDescription(), product.getPrice(),
 				product.getSaleOff(), product.getAmount(), product.getQuantitySold(), product.getWarranty(),
-				product.getCreateAt(), product.getUpdateAt());
+				product.getCreateAt(), product.getUpdateAt(), product.getOrderItems());
 		this.ramId = id2;
 		this.partNumber = partNumber;
 		this.capacity = capacity;
 		this.DDR = dDR;
 		this.typeOfBus = typeOfBus;
 		this.DimmType = dimmType;
-		this.orderItems = orderItems;
-	}
-	
-	public Ram(Long id, String name, String brand, List<ProductImage> productImages, List<ProductRating> ratings,
-			Category categories, Category manufactures, String description, String price, Integer saleOff,
-			Integer amount, Integer quantitySold, String warranty, Timestamp createAt, Timestamp updateAt) {
-		super(id, name, brand, productImages, ratings, categories, manufactures, description, price, saleOff, amount,
-				quantitySold, warranty, createAt, updateAt);
-	}
-
-	public Ram(Long id, String name, String brand, List<ProductImage> productImages, List<ProductRating> ratings,
-			Category categories, Category manufactures, String description, String price, Integer saleOff,
-			Integer amount, Integer quantitySold, String warranty, Timestamp createAt, Timestamp updateAt, Long id2,
-			String partNumber, String capacity, String dDR, String typeOfBus, String dimmType,
-			List<OrderItem> orderItems) {
-		super(id, name, brand, productImages, ratings, categories, manufactures, description, price, saleOff, amount,
-				quantitySold, warranty, createAt, updateAt);
-		this.ramId = id2;
-		this.partNumber = partNumber;
-		this.capacity = capacity;
-		this.DDR = dDR;
-		this.typeOfBus = typeOfBus;
-		this.DimmType = dimmType;
-		this.orderItems = orderItems;
 	}
 
 	public Ram() {
@@ -144,14 +105,6 @@ public class Ram extends Product {
 
 	public void setDimmType(String dimmType) {
 		DimmType = dimmType;
-	}
-
-	public List<OrderItem> getOrderItems() {
-		return orderItems;
-	}
-
-	public void setOrderItems(List<OrderItem> orderItems) {
-		this.orderItems = orderItems;
 	}
 
 }

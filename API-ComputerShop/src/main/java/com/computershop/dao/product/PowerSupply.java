@@ -1,25 +1,13 @@
 package com.computershop.dao.product;
 
-import java.sql.Timestamp;
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.computershop.dao.Category;
-import com.computershop.dao.OrderItem;
 import com.computershop.dao.Product;
-import com.computershop.dao.ProductImage;
-import com.computershop.dao.ProductRating;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
 @Table(name = "PowerSupplies")
 public class PowerSupply extends Product {
@@ -43,56 +31,28 @@ public class PowerSupply extends Product {
 	@Column(name = "output_voltage")
 	private String outputVoltage;
 
-	@OneToMany(mappedBy = "powerSupply", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JsonIgnore
-	private List<OrderItem> orderItems;
-
 	public PowerSupply(Product product) {
 		super(product.getId(), product.getName(), product.getBrand(), product.getProductImages(), product.getRatings(),
 				product.getCategories(), product.getManufactures(), product.getDescription(), product.getPrice(),
 				product.getSaleOff(), product.getAmount(), product.getQuantitySold(), product.getWarranty(),
-				product.getCreateAt(), product.getUpdateAt());
+				product.getCreateAt(), product.getUpdateAt(), product.getOrderItems());
 
 	}
 
 	public PowerSupply(Product product, Long id2, String connectorType, String dimentions, String inputVoltage,
-			String ratedCurrent, String outputVoltage, List<OrderItem> orderItems) {
+			String ratedCurrent, String outputVoltage) {
 		super(product.getId(), product.getName(), product.getBrand(), product.getProductImages(), product.getRatings(),
 				product.getCategories(), product.getManufactures(), product.getDescription(), product.getPrice(),
 				product.getSaleOff(), product.getAmount(), product.getQuantitySold(), product.getWarranty(),
-				product.getCreateAt(), product.getUpdateAt());
+				product.getCreateAt(), product.getUpdateAt(), product.getOrderItems());
 		this.powerSupplyId = id2;
 		this.connectorType = connectorType;
 		this.dimentions = dimentions;
 		this.inputVoltage = inputVoltage;
 		this.ratedCurrent = ratedCurrent;
 		this.outputVoltage = outputVoltage;
-		this.orderItems = orderItems;
 	}
 
-	public PowerSupply(Long id, String name, String brand, List<ProductImage> productImages,
-			List<ProductRating> ratings, Category categories, Category manufactures, String description, String price,
-			Integer saleOff, Integer amount, Integer quantitySold, String warranty, Timestamp createAt,
-			Timestamp updateAt) {
-		super(id, name, brand, productImages, ratings, categories, manufactures, description, price, saleOff, amount,
-				quantitySold, warranty, createAt, updateAt);
-	}
-
-	public PowerSupply(Long id, String name, String brand, List<ProductImage> productImages,
-			List<ProductRating> ratings, Category categories, Category manufactures, String description, String price,
-			Integer saleOff, Integer amount, Integer quantitySold, String warranty, Timestamp createAt,
-			Timestamp updateAt, Long id2, String connectorType, String dimentions, String inputVoltage,
-			String ratedCurrent, String outputVoltage, List<OrderItem> orderItems) {
-		super(id, name, brand, productImages, ratings, categories, manufactures, description, price, saleOff, amount,
-				quantitySold, warranty, createAt, updateAt);
-		this.powerSupplyId = id2;
-		this.connectorType = connectorType;
-		this.dimentions = dimentions;
-		this.inputVoltage = inputVoltage;
-		this.ratedCurrent = ratedCurrent;
-		this.outputVoltage = outputVoltage;
-		this.orderItems = orderItems;
-	}
 
 	public PowerSupply() {
 		super();
@@ -144,14 +104,6 @@ public class PowerSupply extends Product {
 
 	public void setOutputVoltage(String outputVoltage) {
 		this.outputVoltage = outputVoltage;
-	}
-
-	public List<OrderItem> getOrderItems() {
-		return orderItems;
-	}
-
-	public void setOrderItems(List<OrderItem> orderItems) {
-		this.orderItems = orderItems;
 	}
 
 }

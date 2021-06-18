@@ -1,24 +1,15 @@
 package com.computershop.dao.product;
 
-import java.sql.Timestamp;
-import java.util.List;
 
-import javax.persistence.CascadeType;
+
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import com.computershop.dao.Category;
-import com.computershop.dao.OrderItem;
 import com.computershop.dao.Product;
-import com.computershop.dao.ProductImage;
-import com.computershop.dao.ProductRating;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "CPUs")
@@ -62,32 +53,20 @@ public class CPU extends Product {
 	@Column(name = "cache")
 	private String cache;
 
-	@OneToMany(mappedBy = "cpu", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JsonIgnore
-	private List<OrderItem> orderItems;
-
-	public CPU(Long id, String name, String brand, List<ProductImage> productImages, List<ProductRating> ratings,
-			Category categories, Category manufactures, String description, String price, Integer saleOff,
-			Integer amount, Integer quantitySold, String warranty, Timestamp createAt, Timestamp updateAt) {
-		super(id, name, brand, productImages, ratings, categories, manufactures, description, price, saleOff, amount,
-				quantitySold, warranty, createAt, updateAt);
-	}
-
 	public CPU(Product product) {
 		super(product.getId(), product.getName(), product.getBrand(), product.getProductImages(), product.getRatings(),
 				product.getCategories(), product.getManufactures(), product.getDescription(), product.getPrice(),
 				product.getSaleOff(), product.getAmount(), product.getQuantitySold(), product.getWarranty(),
-				product.getCreateAt(), product.getUpdateAt());
-
+				product.getCreateAt(), product.getUpdateAt(), product.getOrderItems());
 	}
 
 	public CPU(Product product, Long id2, String codeName, String cPUFamily, String cores, String threads,
 			String baseFrequency, String maxFrequency, String pCIExpress, String busSpeed, String tdp, String socket,
-			String cache, List<OrderItem> orderItems) {
+			String cache) {
 		super(product.getId(), product.getName(), product.getBrand(), product.getProductImages(), product.getRatings(),
 				product.getCategories(), product.getManufactures(), product.getDescription(), product.getPrice(),
 				product.getSaleOff(), product.getAmount(), product.getQuantitySold(), product.getWarranty(),
-				product.getCreateAt(), product.getUpdateAt());
+				product.getCreateAt(), product.getUpdateAt(), product.getOrderItems());
 		this.cpuId = id2;
 		this.codeName = codeName;
 		this.CPUFamily = cPUFamily;
@@ -100,30 +79,9 @@ public class CPU extends Product {
 		this.tdp = tdp;
 		this.socket = socket;
 		this.cache = cache;
-		this.orderItems = orderItems;
 	}
 
-	public CPU(Long id, String name, String brand, List<ProductImage> productImages, List<ProductRating> ratings,
-			Category categories, Category manufactures, String description, String price, Integer saleOff,
-			Integer amount, Integer quantitySold, String warranty, Timestamp createAt, Timestamp updateAt, Long id2,
-			String codeName, String cPUFamily, String cores, String threads, String baseFrequency, String maxFrequency,
-			String pCIExpress, String busSpeed, String tdp, String socket, String cache, List<OrderItem> orderItems) {
-		super(id, name, brand, productImages, ratings, categories, manufactures, description, price, saleOff, amount,
-				quantitySold, warranty, createAt, updateAt);
-		this.cpuId = id2;
-		this.codeName = codeName;
-		this.CPUFamily = cPUFamily;
-		this.cores = cores;
-		this.threads = threads;
-		this.baseFrequency = baseFrequency;
-		this.maxFrequency = maxFrequency;
-		this.PCIExpress = pCIExpress;
-		this.busSpeed = busSpeed;
-		this.tdp = tdp;
-		this.socket = socket;
-		this.cache = cache;
-		this.orderItems = orderItems;
-	}
+	
 
 	public CPU() {
 		super();
@@ -225,12 +183,6 @@ public class CPU extends Product {
 		this.cache = cache;
 	}
 
-	public List<OrderItem> getOrderItems() {
-		return orderItems;
-	}
 
-	public void setOrderItems(List<OrderItem> orderItems) {
-		this.orderItems = orderItems;
-	}
 
 }

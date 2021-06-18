@@ -21,79 +21,79 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-
 @Entity
-@Table(name = "Product")
+@Table(name = "Products")
 public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "product_id")
 	private Long id;
-	
+
 	@Column(name = "name", nullable = false)
 	@Nationalized
 	private String name;
-	
+
 	@Column(name = "brand", nullable = false)
 	@Nationalized
 	private String brand;
-	
+
 	@OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JsonIgnore
 	private List<ProductImage> productImages;
-	
+
 	@OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JsonIgnore
 	private List<ProductRating> Ratings;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "category_id")
 	private Category categories;
-	
+
+	@OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JsonIgnore
+	private List<OrderItem> orderItems;
+
 	@ManyToOne
 	@JoinColumn(name = "manufacture_id")
 	private Category manufactures;
-	
+
 	@Column(name = "description")
 	@Nationalized
 	private String description;
-	
+
 	@Column(name = "price", nullable = false)
 	private String price;
-	
+
 	@Column(name = "sale_off", nullable = false)
 	private Integer saleOff;
-	
+
 	@Column(name = "amount", nullable = false)
 	private Integer amount;
-	
+
 	@Column(name = "quantity_sold", nullable = false)
 	private Integer quantitySold;
-	
+
 	@Column(name = "warranty", nullable = false)
 	private String warranty;
-	
+
 	@CreationTimestamp
 	private Timestamp createAt;
-	
+
 	@UpdateTimestamp
 	private Timestamp updateAt;
 
-	
-	
-
-
-
 	public Product(Long id, String name, String brand, List<ProductImage> productImages, List<ProductRating> ratings,
-			Category categories, Category manufactures, String description, String price, Integer saleOff,
-			Integer amount, Integer quantitySold, String warranty, Timestamp createAt, Timestamp updateAt) {
+			Category categories, Category manufactures, String description, String price,
+			Integer saleOff, Integer amount, Integer quantitySold, String warranty, Timestamp createAt,
+			Timestamp updateAt, List<OrderItem> orderItems) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.brand = brand;
 		this.productImages = productImages;
-		Ratings = ratings;
+		this.Ratings = ratings;
 		this.categories = categories;
+		this.orderItems = orderItems;
 		this.manufactures = manufactures;
 		this.description = description;
 		this.price = price;
@@ -103,6 +103,14 @@ public class Product {
 		this.warranty = warranty;
 		this.createAt = createAt;
 		this.updateAt = updateAt;
+	}
+
+	public List<OrderItem> getOrderItems() {
+		return orderItems;
+	}
+
+	public void setOrderItems(List<OrderItem> orderItems) {
+		this.orderItems = orderItems;
 	}
 
 	public Product() {
@@ -221,17 +229,12 @@ public class Product {
 		this.warranty = warranty;
 	}
 
-
-
 	public Category getManufactures() {
 		return manufactures;
 	}
 
-
-
 	public void setManufactures(Category manufactures) {
 		this.manufactures = manufactures;
 	}
-	
-	
+
 }

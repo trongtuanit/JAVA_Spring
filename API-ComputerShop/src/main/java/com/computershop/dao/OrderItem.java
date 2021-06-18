@@ -1,27 +1,13 @@
 package com.computershop.dao;
 
-import java.util.HashMap;
-//import java.util.Map;
-//import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import com.computershop.dao.product.CPU;
-import com.computershop.dao.product.Case;
-import com.computershop.dao.product.GraphicCard;
-import com.computershop.dao.product.Monitor;
-import com.computershop.dao.product.PowerSupply;
-import com.computershop.dao.product.HardDisk;
-import com.computershop.dao.product.Mainboard;
-import com.computershop.dao.product.Ram;
 
 @Entity
 @Table(name = "OderItems")
@@ -35,83 +21,23 @@ public class OrderItem {
 	@JoinColumn(name = "order_id")
 	private SaleOrder saleOrder;
 
-	@Column(name = "list_quantity_order", nullable = false) // neu goi constructor khong doi, list nay tu dong tao
-	private HashMap<Object, Integer> listQuantityOrder;
+	@Column(name = "quantity_order", nullable = false) // neu goi constructor khong doi, list nay tu dong tao
+	private Integer QuantityOrder;
 
-	@ManyToOne(optional = true, fetch = FetchType.LAZY)
-	@JoinColumn(name = "ram_id", nullable = true)
-	private Ram ram;
+	@ManyToOne
+	@JoinColumn(name = "product_id")
+	private Product product;
 
-	@ManyToOne(optional = true, fetch = FetchType.LAZY)
-	@JoinColumn(name = "cpu_id", nullable = true)
-	private CPU cpu;
-
-	@ManyToOne(optional = true, fetch = FetchType.LAZY)
-	@JoinColumn(name = "mainboard_id", nullable = true)
-	private Mainboard mainboard;
-
-	@ManyToOne(optional = true, fetch = FetchType.LAZY)
-	@JoinColumn(name = "hard_disk_id", nullable = true)
-	private HardDisk hardDisk;
-
-	@ManyToOne(optional = true, fetch = FetchType.LAZY)
-	@JoinColumn(name = "monitor_id", nullable = true)
-	private Monitor monitor;
-
-	@ManyToOne(optional = true, fetch = FetchType.LAZY)
-	@JoinColumn(name = "power_supply_id", nullable = true)
-	private PowerSupply powerSupply;
-
-	@ManyToOne(optional = true, fetch = FetchType.LAZY)
-	@JoinColumn(name = "case_id", nullable = true)
-	private Case casepc;
-
-	@ManyToOne(optional = true, fetch = FetchType.LAZY)
-	@JoinColumn(name = "graphic_card_id", nullable = true)
-	private GraphicCard graphicCard;
-
-	public OrderItem(Long id, SaleOrder saleOrder, HashMap<Object, Integer> listQuantityOrder, Ram ram, CPU cpu,
-			Mainboard mainboard, HardDisk hardDisk, Monitor monitor, PowerSupply powerSupply, Case casepc,
-			GraphicCard graphicCard) {
+	public OrderItem(Long id, SaleOrder saleOrder, Integer quantityOrder, Product product) {
 		super();
 		this.id = id;
 		this.saleOrder = saleOrder;
-		this.listQuantityOrder = listQuantityOrder;
-		this.ram = ram;
-		this.cpu = cpu;
-		this.mainboard = mainboard;
-		this.hardDisk = hardDisk;
-		this.monitor = monitor;
-		this.powerSupply = powerSupply;
-		this.casepc = casepc;
-		this.graphicCard = graphicCard;
+		QuantityOrder = quantityOrder;
+		this.product = product;
 	}
 
 	public OrderItem() {
-		this.listQuantityOrder = new HashMap<Object, Integer>();
-		if (this.ram != null)
-			this.listQuantityOrder.put(this.ram, 0);
-
-		if (this.cpu != null)
-			this.listQuantityOrder.put(this.cpu, 0);
-
-		if (this.mainboard != null)
-			this.listQuantityOrder.put(this.mainboard, 0);
-
-		if (this.hardDisk != null)
-			this.listQuantityOrder.put(this.hardDisk, 0);
-
-		if (this.monitor != null)
-			this.listQuantityOrder.put(this.monitor, 0);
-
-		if (this.powerSupply != null)
-			this.listQuantityOrder.put(this.powerSupply, 0);
-
-		if (this.casepc != null)
-			this.listQuantityOrder.put(this.casepc, 0);
-
-		if (this.graphicCard != null)
-			this.listQuantityOrder.put(this.graphicCard, 0);
+		super();
 	}
 
 	public Long getId() {
@@ -122,84 +48,28 @@ public class OrderItem {
 		this.id = id;
 	}
 
-	public SaleOrder getOrder() {
+	public SaleOrder getSaleOrder() {
 		return saleOrder;
 	}
 
-	public void setOrder(SaleOrder saleOrder) {
+	public void setSaleOrder(SaleOrder saleOrder) {
 		this.saleOrder = saleOrder;
 	}
 
-	public HashMap<Object, Integer> getListQuantityOrder() {
-		return listQuantityOrder;
+	public Integer getQuantityOrder() {
+		return QuantityOrder;
 	}
 
-	public void setListQuantityOrder(HashMap<Object, Integer> listQuantityOrder) {
-		this.listQuantityOrder = listQuantityOrder;
+	public void setQuantityOrder(Integer quantityOrder) {
+		QuantityOrder = quantityOrder;
 	}
 
-	public Ram getRam() {
-		return ram;
+	public Product getProduct() {
+		return product;
 	}
 
-	public void setRam(Ram ram) {
-		this.ram = ram;
-	}
-
-	public CPU getCpu() {
-		return cpu;
-	}
-
-	public void setCpu(CPU cpu) {
-		this.cpu = cpu;
-	}
-
-	public Mainboard getMainboard() {
-		return mainboard;
-	}
-
-	public void setMainboard(Mainboard mainboard) {
-		this.mainboard = mainboard;
-	}
-
-	public HardDisk getHardDisk() {
-		return hardDisk;
-	}
-
-	public void setHardDisk(HardDisk hardDisk) {
-		this.hardDisk = hardDisk;
-	}
-
-	public Monitor getMonitor() {
-		return monitor;
-	}
-
-	public void setMonitor(Monitor monitor) {
-		this.monitor = monitor;
-	}
-
-	public PowerSupply getPowerSupply() {
-		return powerSupply;
-	}
-
-	public void setPowerSupply(PowerSupply powerSupply) {
-		this.powerSupply = powerSupply;
-	}
-
-	public Case getCasepc() {
-		return casepc;
-	}
-
-	public void setCasepc(Case casepc) {
-		this.casepc = casepc;
-	}
-
-	public GraphicCard getGraphicCard() {
-		return graphicCard;
-	}
-
-	public void setGraphicCard(GraphicCard graphicCard) {
-		this.graphicCard = graphicCard;
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 
 }
