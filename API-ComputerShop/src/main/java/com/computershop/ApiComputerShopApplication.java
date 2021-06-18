@@ -9,10 +9,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.filter.CharacterEncodingFilter;
 
 import com.cloudinary.Cloudinary;
+import com.computershop.dao.Category;
 import com.computershop.dao.Delivery;
 import com.computershop.dao.User;
+import com.computershop.repositories.CategoryRepository;
 import com.computershop.repositories.DeliveryRepository;
 import com.computershop.repositories.UserRepository;
 
@@ -20,7 +23,7 @@ import com.computershop.repositories.UserRepository;
 public class ApiComputerShopApplication implements CommandLineRunner {
 	@Value("${cloudinary.url}")
 	private String cloudinaryUrl;
-	
+
 	@Value("${user.first_name}")
 	private String firstName;
 
@@ -53,12 +56,19 @@ public class ApiComputerShopApplication implements CommandLineRunner {
 
 	@Autowired
 	private DeliveryRepository deliveryRepository;
-	
-	@Bean
-    public Cloudinary cloudinary() {
-        return new Cloudinary(cloudinaryUrl);
-    }
 
+	@Bean
+	public Cloudinary cloudinary() {
+		return new Cloudinary(cloudinaryUrl);
+	}
+
+	@Autowired
+	private CategoryRepository categoryRepository;
+
+	@Bean
+	public CharacterEncodingFilter encodingFilter() {
+		return new CharacterEncodingFilter("UTF-8", true);
+	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(ApiComputerShopApplication.class, args);
@@ -70,17 +80,30 @@ public class ApiComputerShopApplication implements CommandLineRunner {
 			User admin = new User(null, firstName, lastName, username, passwordEncoder.encode(password), address, null,
 					phone, email, role, null, null);
 			userRepository.save(admin);
-			System.out.println(username+ " account has been created!");
+			System.out.println(username + " account has been created!");
 		}
-		
-		  if (deliveryRepository.count() == 0) {
-	            Delivery delivery1 = new Delivery( null, "DaThemVaoGio", "Đã thêm vào giỏ", null, null, null);
-	            Delivery delivery2 = new Delivery(null, "ChoXacNhan", "Chờ xác nhận", null, null, null);
-	            Delivery delivery3 = new Delivery(null, "DangGiaoHang", "Đang giao hàng", null, null, null);
-	            Delivery delivery4 = new Delivery(null, "DaGiao", "Đã giao", null, null, null);
-	            Delivery delivery5 = new Delivery(null, "DaHuy", "Đã hủy", null, null, null);
-	            deliveryRepository.saveAll(Arrays.asList(delivery1, delivery2, delivery3, delivery4, delivery5));
-	        }
+
+		if (deliveryRepository.count() == 0) {
+			Delivery delivery1 = new Delivery(null, "DaThemVaoGio", "Đã thêm vào giỏ", null, null, null);
+			Delivery delivery2 = new Delivery(null, "ChoXacNhan", "Chờ xác nhận", null, null, null);
+			Delivery delivery3 = new Delivery(null, "DangGiaoHang", "Đang giao hàng", null, null, null);
+			Delivery delivery4 = new Delivery(null, "DaGiao", "Đã giao", null, null, null);
+			Delivery delivery5 = new Delivery(null, "DaHuy", "Đã hủy", null, null, null);
+			deliveryRepository.saveAll(Arrays.asList(delivery1, delivery2, delivery3, delivery4, delivery5));
+		}
+		if (categoryRepository.count() == 0) {
+			Category category1 = new Category(null, null, "Case", null, null);
+			Category category2 = new Category(null, null, "CPU", null, null);
+			Category category3 = new Category(null, null, "Graphic card", null, null);
+			Category category4 = new Category(null, null, "Hard disk", null, null);
+			Category category5 = new Category(null, null, "Main board", null, null);
+			Category category6 = new Category(null, null, "Monitor", null, null);
+			Category category7 = new Category(null, null, "Power Suppy", null, null);
+			Category category8 = new Category(null, null, "Ram", null, null);
+
+			categoryRepository.saveAll(Arrays.asList(category1, category2, category3, category4, category5, category6,
+					category7, category8));
+		}
 
 	}
 
