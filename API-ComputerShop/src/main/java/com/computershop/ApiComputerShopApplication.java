@@ -1,5 +1,6 @@
 package com.computershop;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,7 +13,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.cloudinary.Cloudinary;
+import com.computershop.dao.Delivery;
 import com.computershop.dao.User;
+import com.computershop.repositories.DeliveryRepository;
 import com.computershop.repositories.UserRepository;
 
 @SpringBootApplication
@@ -59,6 +62,9 @@ public class ApiComputerShopApplication implements CommandLineRunner {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
+	@Autowired
+	private DeliveryRepository deliveryRepository;
+	
 	@Bean
 	public Cloudinary cloudinaryConfig() {
 		Cloudinary cloudinary = new Cloudinary(cloudinaryUrl);
@@ -83,6 +89,15 @@ public class ApiComputerShopApplication implements CommandLineRunner {
 			userRepository.save(admin);
 			System.out.println(username+ " account has been created!");
 		}
+		
+		  if (deliveryRepository.count() == 0) {
+	            Delivery delivery1 = new Delivery( null, "DaThemVaoGio", "Đã thêm vào giỏ", null, null, null);
+	            Delivery delivery2 = new Delivery(null, "ChoXacNhan", "Chờ xác nhận", null, null, null);
+	            Delivery delivery3 = new Delivery(null, "DangGiaoHang", "Đang giao hàng", null, null, null);
+	            Delivery delivery4 = new Delivery(null, "DaGiao", "Đã giao", null, null, null);
+	            Delivery delivery5 = new Delivery(null, "DaHuy", "Đã hủy", null, null, null);
+	            deliveryRepository.saveAll(Arrays.asList(delivery1, delivery2, delivery3, delivery4, delivery5));
+	        }
 
 	}
 

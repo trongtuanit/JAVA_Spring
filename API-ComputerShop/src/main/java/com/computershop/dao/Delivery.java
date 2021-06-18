@@ -25,22 +25,22 @@ public class Delivery {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "delivery_id")
-	private long id;
-	
+	private Long id;
+
 	@Column(name = "index_delivery", nullable = false, unique = true)
 	private String index;
 
 	@Nationalized
 	@Column(name = "value_delivery", nullable = false)
 	private String value;
-	
+
 	@OneToMany(mappedBy = "delivery", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JsonIgnore
 	private List<SaleOrder> saleOrders;
-	
+
 	@CreationTimestamp
 	private Timestamp createAt;
-	
+
 	@UpdateTimestamp
 	private Timestamp updateAt;
 
@@ -48,11 +48,13 @@ public class Delivery {
 		super();
 	}
 
-	public Delivery(long id, String index, String value, Timestamp createAt, Timestamp updateAt) {
+	public Delivery(Long id, String index, String value, List<SaleOrder> saleOrders, Timestamp createAt,
+			Timestamp updateAt) {
 		super();
 		this.id = id;
 		this.index = index;
 		this.value = value;
+		this.saleOrders = saleOrders;
 		this.createAt = createAt;
 		this.updateAt = updateAt;
 	}
@@ -105,19 +107,4 @@ public class Delivery {
 		this.saleOrders = saleOrders;
 	}
 
-	public Delivery(long id, String index, String value, List<SaleOrder> saleOrders, Timestamp createAt,
-			Timestamp updateAt) {
-		super();
-		this.id = id;
-		this.index = index;
-		this.value = value;
-		this.saleOrders = saleOrders;
-		this.createAt = createAt;
-		this.updateAt = updateAt;
-	}
-
-
-
-
-	
 }
