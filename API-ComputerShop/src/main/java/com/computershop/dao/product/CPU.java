@@ -27,7 +27,7 @@ public class CPU extends Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "cpu_id")
-	private Long id;
+	private Long cpuId;
 
 	@Column(name = "code_name", nullable = false)
 	private String codeName;
@@ -73,6 +73,36 @@ public class CPU extends Product {
 				quantitySold, warranty, createAt, updateAt);
 	}
 
+	public CPU(Product product) {
+		super(product.getId(), product.getName(), product.getBrand(), product.getProductImages(), product.getRatings(),
+				product.getCategories(), product.getManufactures(), product.getDescription(), product.getPrice(),
+				product.getSaleOff(), product.getAmount(), product.getQuantitySold(), product.getWarranty(),
+				product.getCreateAt(), product.getUpdateAt());
+
+	}
+
+	public CPU(Product product, Long id2, String codeName, String cPUFamily, String cores, String threads,
+			String baseFrequency, String maxFrequency, String pCIExpress, String busSpeed, String tdp, String socket,
+			String cache, List<OrderItem> orderItems) {
+		super(product.getId(), product.getName(), product.getBrand(), product.getProductImages(), product.getRatings(),
+				product.getCategories(), product.getManufactures(), product.getDescription(), product.getPrice(),
+				product.getSaleOff(), product.getAmount(), product.getQuantitySold(), product.getWarranty(),
+				product.getCreateAt(), product.getUpdateAt());
+		this.cpuId = id2;
+		this.codeName = codeName;
+		this.CPUFamily = cPUFamily;
+		this.cores = cores;
+		this.threads = threads;
+		this.baseFrequency = baseFrequency;
+		this.maxFrequency = maxFrequency;
+		this.PCIExpress = pCIExpress;
+		this.busSpeed = busSpeed;
+		this.tdp = tdp;
+		this.socket = socket;
+		this.cache = cache;
+		this.orderItems = orderItems;
+	}
+
 	public CPU(Long id, String name, String brand, List<ProductImage> productImages, List<ProductRating> ratings,
 			Category categories, Category manufactures, String description, String price, Integer saleOff,
 			Integer amount, Integer quantitySold, String warranty, Timestamp createAt, Timestamp updateAt, Long id2,
@@ -80,14 +110,14 @@ public class CPU extends Product {
 			String pCIExpress, String busSpeed, String tdp, String socket, String cache, List<OrderItem> orderItems) {
 		super(id, name, brand, productImages, ratings, categories, manufactures, description, price, saleOff, amount,
 				quantitySold, warranty, createAt, updateAt);
-		id = id2;
+		this.cpuId = id2;
 		this.codeName = codeName;
-		CPUFamily = cPUFamily;
+		this.CPUFamily = cPUFamily;
 		this.cores = cores;
 		this.threads = threads;
 		this.baseFrequency = baseFrequency;
 		this.maxFrequency = maxFrequency;
-		PCIExpress = pCIExpress;
+		this.PCIExpress = pCIExpress;
 		this.busSpeed = busSpeed;
 		this.tdp = tdp;
 		this.socket = socket;
@@ -99,12 +129,12 @@ public class CPU extends Product {
 		super();
 	}
 
-	public Long getId() {
-		return id;
+	public Long getCpuId() {
+		return cpuId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setCpuId(Long cpuId) {
+		this.cpuId = cpuId;
 	}
 
 	public String getCodeName() {

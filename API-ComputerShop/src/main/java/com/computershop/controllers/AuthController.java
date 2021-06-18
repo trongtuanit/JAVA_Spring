@@ -32,6 +32,7 @@ import com.computershop.exceptions.InvalidException;
 import com.computershop.exceptions.NotFoundException;
 import com.computershop.helpers.ConvertObject;
 import com.computershop.helpers.GenerateRandomPassword;
+import com.computershop.helpers.Validate;
 //import com.computershop.helpers.Validate;
 import com.computershop.models.AuthenticationRequest;
 import com.computershop.models.AuthenticationResponse;
@@ -101,10 +102,14 @@ public class AuthController {
 	
 	@PostMapping("/signup")
 	public ResponseEntity<?> signUp(@RequestBody SignUpDTO signUpDTO){
+		if(Validate.checkSignUp(signUpDTO)) {
+			throw new InvalidException("Invalid infomation!"); 
+		}
 		User oldUser = userRepository.findByUsername(signUpDTO.getUsername());
 		if(oldUser != null) {
 			throw new DuplicateException("Username has been taken!");
 		}
+		
 		User user = ConvertObject.fromSignUpDTOToUserDAO(signUpDTO);
 		if(user == null) {
 			throw new InvalidException("Invalid user");

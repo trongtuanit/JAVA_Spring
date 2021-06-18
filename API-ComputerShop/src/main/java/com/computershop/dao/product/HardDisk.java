@@ -26,7 +26,7 @@ public class HardDisk extends Product {
 	@Id
 	@Column(name = "hard_disk_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long hardDiskId;
 
 	@Column(name = "interface_type")
 	private String interfaceType;
@@ -61,7 +61,30 @@ public class HardDisk extends Product {
 			List<OrderItem> orderItems) {
 		super(id, name, brand, productImages, ratings, categories, manufactures, description, price, saleOff, amount,
 				quantitySold, warranty, createAt, updateAt);
-		id = id2;
+		this.hardDiskId = id2;
+		this.interfaceType = interfaceType;
+		this.cache = cache;
+		this.capacity = capacity;
+		this.style = style;
+		this.size = size;
+		this.orderItems = orderItems;
+	}
+
+	public HardDisk(Product product) {
+		super(product.getId(), product.getName(), product.getBrand(), product.getProductImages(), product.getRatings(),
+				product.getCategories(), product.getManufactures(), product.getDescription(), product.getPrice(),
+				product.getSaleOff(), product.getAmount(), product.getQuantitySold(), product.getWarranty(),
+				product.getCreateAt(), product.getUpdateAt());
+
+	}
+
+	public HardDisk(Product product, Long id2, String interfaceType, String cache, String capacity, String style,
+			String size, List<OrderItem> orderItems) {
+		super(product.getId(), product.getName(), product.getBrand(), product.getProductImages(), product.getRatings(),
+				product.getCategories(), product.getManufactures(), product.getDescription(), product.getPrice(),
+				product.getSaleOff(), product.getAmount(), product.getQuantitySold(), product.getWarranty(),
+				product.getCreateAt(), product.getUpdateAt());
+		this.hardDiskId = id2;
 		this.interfaceType = interfaceType;
 		this.cache = cache;
 		this.capacity = capacity;
@@ -74,12 +97,12 @@ public class HardDisk extends Product {
 		super();
 	}
 
-	public Long getId() {
-		return id;
+	public Long getHhardDiskId() {
+		return hardDiskId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setHardDiskId(Long id) {
+		this.hardDiskId = id;
 	}
 
 	public String getInterfaceType() {

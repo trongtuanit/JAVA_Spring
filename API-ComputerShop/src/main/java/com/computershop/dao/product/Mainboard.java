@@ -26,7 +26,7 @@ public class Mainboard extends Product {
 	@Id
 	@Column(name = "mainboard_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long mainboardId;
 
 	@Column(name = "chipset_support")
 	private String chipset; // chipset
@@ -50,9 +50,29 @@ public class Mainboard extends Product {
 	@JsonIgnore
 	private List<OrderItem> orderItems;
 
-	
+	public Mainboard(Product product) {
+		super(product.getId(), product.getName(), product.getBrand(), product.getProductImages(), product.getRatings(),
+				product.getCategories(), product.getManufactures(), product.getDescription(), product.getPrice(),
+				product.getSaleOff(), product.getAmount(), product.getQuantitySold(), product.getWarranty(),
+				product.getCreateAt(), product.getUpdateAt());
 
-	
+	}
+
+	public Mainboard(Product product, Long id2, String chipset, String cpu, String socket, String accessories,
+			String formFactors, String oSs, List<OrderItem> orderItems) {
+		super(product.getId(), product.getName(), product.getBrand(), product.getProductImages(), product.getRatings(),
+				product.getCategories(), product.getManufactures(), product.getDescription(), product.getPrice(),
+				product.getSaleOff(), product.getAmount(), product.getQuantitySold(), product.getWarranty(),
+				product.getCreateAt(), product.getUpdateAt());
+		this.mainboardId = id2;
+		this.chipset = chipset;
+		this.cpu = cpu;
+		this.socket = socket;
+		this.accessories = accessories;
+		this.formFactors = formFactors;
+		this.OSs = oSs;
+		this.orderItems = orderItems;
+	}
 
 	public Mainboard(Long id, String name, String brand, List<ProductImage> productImages, List<ProductRating> ratings,
 			Category categories, Category manufactures, String description, String price, Integer saleOff,
@@ -68,22 +88,22 @@ public class Mainboard extends Product {
 			List<OrderItem> orderItems) {
 		super(id, name, brand, productImages, ratings, categories, manufactures, description, price, saleOff, amount,
 				quantitySold, warranty, createAt, updateAt);
-		id = id2;
+		this.mainboardId = id2;
 		this.chipset = chipset;
 		this.cpu = cpu;
 		this.socket = socket;
 		this.accessories = accessories;
 		this.formFactors = formFactors;
-		OSs = oSs;
+		this.OSs = oSs;
 		this.orderItems = orderItems;
 	}
 
-	public Long getId() {
-		return id;
+	public Long getMainboardId() {
+		return mainboardId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setMainboardId(Long id) {
+		this.mainboardId = id;
 	}
 
 	public String getChipset() {
@@ -141,7 +161,5 @@ public class Mainboard extends Product {
 	public void setOrderItems(List<OrderItem> orderItems) {
 		this.orderItems = orderItems;
 	}
-
-	
 
 }

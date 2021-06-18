@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.DeleteMapping;
+//import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.computershop.dao.Manufacture;
 import com.computershop.dto.ManufactureDTO;
 import com.computershop.exceptions.DuplicateException;
-import com.computershop.exceptions.InvalidException;
+//import com.computershop.exceptions.InvalidException;
 import com.computershop.exceptions.NotFoundException;
 import com.computershop.helpers.ConvertObject;
 import com.computershop.repositories.ManufactureRepository;
@@ -95,20 +95,5 @@ public class ManufactureController {
         return ResponseEntity.status(HttpStatus.OK).body(manufacture);
     }
 
-    @DeleteMapping("/{manufactureId}")
-    @PreAuthorize("@userAuthorizer.authorizeAdmin(authentication, 'ADMIN')")
-    public ResponseEntity<?> deleteManufacture(@PathVariable("manufactureId") Long manufactureId) {
-        Optional<Manufacture> optional = manufactureRepos.findByManufactureId(manufactureId);
-        if (!optional.isPresent()) {
-            throw new NotFoundException("Manufacture not found");
-        }
 
-        if (!optional.get().getProducts().isEmpty()) {
-            throw new InvalidException("Delete failed");
-        }
-
-        manufactureRepos.deleteById(manufactureId);
-
-        return ResponseEntity.status(HttpStatus.OK).body(optional.get());
-    }
 }

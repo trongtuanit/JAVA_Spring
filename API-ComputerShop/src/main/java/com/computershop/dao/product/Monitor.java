@@ -28,7 +28,7 @@ public class Monitor extends Product {
 	@Id
 	@Column(name = "monitor_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long monitorId;
 
 	@Column(name = "screen_size")
 	private String screenSize;
@@ -57,6 +57,31 @@ public class Monitor extends Product {
 	@JsonIgnore
 	private List<OrderItem> orderItems;
 
+	public Monitor(Product product) {
+		super(product.getId(), product.getName(), product.getBrand(), product.getProductImages(), product.getRatings(),
+				product.getCategories(), product.getManufactures(), product.getDescription(), product.getPrice(),
+				product.getSaleOff(), product.getAmount(), product.getQuantitySold(), product.getWarranty(),
+				product.getCreateAt(), product.getUpdateAt());
+
+	}
+
+	public Monitor(Product product, Long id2, String screenSize, String maximumResolution, String nativeResolution,
+			String color, String refreshRate, String aspectRatio, String touchScreen, List<OrderItem> orderItems) {
+		super(product.getId(), product.getName(), product.getBrand(), product.getProductImages(), product.getRatings(),
+				product.getCategories(), product.getManufactures(), product.getDescription(), product.getPrice(),
+				product.getSaleOff(), product.getAmount(), product.getQuantitySold(), product.getWarranty(),
+				product.getCreateAt(), product.getUpdateAt());
+		this.monitorId = id2;
+		this.screenSize = screenSize;
+		this.maximumResolution = maximumResolution;
+		this.nativeResolution = nativeResolution;
+		this.color = color;
+		this.refreshRate = refreshRate;
+		this.aspectRatio = aspectRatio;
+		this.touchScreen = touchScreen;
+		this.orderItems = orderItems;
+	}
+
 	public Monitor(Long id, String name, String brand, List<ProductImage> productImages, List<ProductRating> ratings,
 			Category categories, Category manufactures, String description, String price, Integer saleOff,
 			Integer amount, Integer quantitySold, String warranty, Timestamp createAt, Timestamp updateAt) {
@@ -71,7 +96,7 @@ public class Monitor extends Product {
 			String aspectRatio, String touchScreen, List<OrderItem> orderItems) {
 		super(id, name, brand, productImages, ratings, categories, manufactures, description, price, saleOff, amount,
 				quantitySold, warranty, createAt, updateAt);
-		id = id2;
+		this.monitorId = id2;
 		this.screenSize = screenSize;
 		this.maximumResolution = maximumResolution;
 		this.nativeResolution = nativeResolution;
@@ -86,12 +111,12 @@ public class Monitor extends Product {
 		super();
 	}
 
-	public Long getId() {
-		return id;
+	public Long getMonitorId() {
+		return monitorId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setMonitorId(Long id) {
+		this.monitorId = id;
 	}
 
 	public String getScreenSize() {

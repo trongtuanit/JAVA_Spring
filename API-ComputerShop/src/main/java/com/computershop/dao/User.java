@@ -50,7 +50,7 @@ public class User {
 	
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JsonIgnore
-	private List<Order> orders;
+	private List<SaleOrder> saleOrders;
 	
 	@Column(name = "phone", nullable = false)
 	private String phone;
@@ -73,7 +73,7 @@ public class User {
 	}
 	
 	public User(Long id, String firstName, String lastName, String username, String password, String address,
-			List<Order> orders, String phone, String email, String role, Timestamp createAt, Timestamp updateAt) {
+			List<SaleOrder> saleOrders, String phone, String email, String role, Timestamp createAt, Timestamp updateAt) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -81,7 +81,7 @@ public class User {
 		this.username = username;
 		this.password = password;
 		this.address = address;
-		this.orders = orders;
+		this.saleOrders = saleOrders;
 		this.phone = phone;
 		this.email = email;
 		this.role = role;
@@ -137,12 +137,12 @@ public class User {
 		this.address = address;
 	}
 
-	public List<Order> getOrders() {
-		return orders;
+	public List<SaleOrder> getOrders() {
+		return saleOrders;
 	}
 
-	public void setOrders(List<Order> orders) {
-		this.orders = orders;
+	public void setOrders(List<SaleOrder> saleOrders) {
+		this.saleOrders = saleOrders;
 	}
 
 	public String getPhone() {

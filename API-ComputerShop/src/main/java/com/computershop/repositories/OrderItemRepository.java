@@ -7,5 +7,5 @@ import com.computershop.dao.OrderItem;
 
 @Repository
 public interface OrderItemRepository extends JpaRepository<OrderItem, Long>{
-
+	OrderItem findBySaleOrderIdAndProductId(Long saleOrderId, Long productId);
 }

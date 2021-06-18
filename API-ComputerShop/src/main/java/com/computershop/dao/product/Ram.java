@@ -26,7 +26,7 @@ public class Ram extends Product {
 	@Id
 	@Column(name = "ram_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long ramId;
 
 	@Column(name = "part_number")
 	private String partNumber; // Mã SP
@@ -47,6 +47,30 @@ public class Ram extends Product {
 	@JsonIgnore
 	private List<OrderItem> orderItems;
 
+	public Ram(Product product) {
+		super(product.getId(), product.getName(), product.getBrand(), product.getProductImages(), product.getRatings(),
+				product.getCategories(), product.getManufactures(), product.getDescription(), product.getPrice(),
+				product.getSaleOff(), product.getAmount(), product.getQuantitySold(), product.getWarranty(),
+				product.getCreateAt(), product.getUpdateAt());
+
+	}
+	
+	public Ram(Product product, Long id2,
+			String partNumber, String capacity, String dDR, String typeOfBus, String dimmType,
+			List<OrderItem> orderItems) {
+		super(product.getId(), product.getName(), product.getBrand(), product.getProductImages(), product.getRatings(),
+				product.getCategories(), product.getManufactures(), product.getDescription(), product.getPrice(),
+				product.getSaleOff(), product.getAmount(), product.getQuantitySold(), product.getWarranty(),
+				product.getCreateAt(), product.getUpdateAt());
+		this.ramId = id2;
+		this.partNumber = partNumber;
+		this.capacity = capacity;
+		this.DDR = dDR;
+		this.typeOfBus = typeOfBus;
+		this.DimmType = dimmType;
+		this.orderItems = orderItems;
+	}
+	
 	public Ram(Long id, String name, String brand, List<ProductImage> productImages, List<ProductRating> ratings,
 			Category categories, Category manufactures, String description, String price, Integer saleOff,
 			Integer amount, Integer quantitySold, String warranty, Timestamp createAt, Timestamp updateAt) {
@@ -61,12 +85,12 @@ public class Ram extends Product {
 			List<OrderItem> orderItems) {
 		super(id, name, brand, productImages, ratings, categories, manufactures, description, price, saleOff, amount,
 				quantitySold, warranty, createAt, updateAt);
-		id = id2;
+		this.ramId = id2;
 		this.partNumber = partNumber;
 		this.capacity = capacity;
-		DDR = dDR;
+		this.DDR = dDR;
 		this.typeOfBus = typeOfBus;
-		DimmType = dimmType;
+		this.DimmType = dimmType;
 		this.orderItems = orderItems;
 	}
 
@@ -74,12 +98,12 @@ public class Ram extends Product {
 		super();
 	}
 
-	public Long getId() {
-		return id;
+	public Long getRamId() {
+		return ramId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setRamId(Long id) {
+		this.ramId = id;
 	}
 
 	public String getPartNumber() {

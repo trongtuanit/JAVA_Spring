@@ -20,47 +20,44 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-
-
 @Entity
-@Table(name = "Orders")
+@Table(name = "SaleOrder")
 
-public class Order {
+public class SaleOrder {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "order_id")
+	@Column(name = "saleOrder_id")
 	private Long id;
-	
+
 	@Column(name = "address", nullable = false)
 	private String address;
-	
+
 	@Column(name = "phone", nullable = false)
 	private String phone;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "delivery_id")
 	private Delivery delivery;
-	
+
 	@OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JsonIgnore
 	private List<OrderItem> orderItems;
-	
+
 	@UpdateTimestamp
 	private Timestamp updateAt;
-	
+
 	@CreationTimestamp
 	private Timestamp createAt;
 
-
-	public Order() {
+	public SaleOrder() {
 		super();
 	}
 
-	public Order(long id, String address, String phone, User user, Delivery delivery, List<OrderItem> orderItems,
+	public SaleOrder(long id, String address, String phone, User user, Delivery delivery, List<OrderItem> orderItems,
 			Timestamp updateAt, Timestamp createAt) {
 		super();
 		this.id = id;
@@ -136,7 +133,5 @@ public class Order {
 	public void setCreateAt(Timestamp createAt) {
 		this.createAt = createAt;
 	}
-	
-	
-	
+
 }

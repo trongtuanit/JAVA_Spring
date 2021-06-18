@@ -26,7 +26,7 @@ public class PowerSupply extends Product {
 	@Id
 	@Column(name = "power_supply_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long powerSupplyId;
 
 	@Column(name = "connector_type")
 	private String connectorType; // Sata/Data
@@ -47,21 +47,45 @@ public class PowerSupply extends Product {
 	@JsonIgnore
 	private List<OrderItem> orderItems;
 
-	public PowerSupply(Long id, String name, String brand, List<ProductImage> productImages, List<ProductRating> ratings,
-			Category categories, Category manufactures, String description, String price, Integer saleOff,
-			Integer amount, Integer quantitySold, String warranty, Timestamp createAt, Timestamp updateAt) {
+	public PowerSupply(Product product) {
+		super(product.getId(), product.getName(), product.getBrand(), product.getProductImages(), product.getRatings(),
+				product.getCategories(), product.getManufactures(), product.getDescription(), product.getPrice(),
+				product.getSaleOff(), product.getAmount(), product.getQuantitySold(), product.getWarranty(),
+				product.getCreateAt(), product.getUpdateAt());
+
+	}
+
+	public PowerSupply(Product product, Long id2, String connectorType, String dimentions, String inputVoltage,
+			String ratedCurrent, String outputVoltage, List<OrderItem> orderItems) {
+		super(product.getId(), product.getName(), product.getBrand(), product.getProductImages(), product.getRatings(),
+				product.getCategories(), product.getManufactures(), product.getDescription(), product.getPrice(),
+				product.getSaleOff(), product.getAmount(), product.getQuantitySold(), product.getWarranty(),
+				product.getCreateAt(), product.getUpdateAt());
+		this.powerSupplyId = id2;
+		this.connectorType = connectorType;
+		this.dimentions = dimentions;
+		this.inputVoltage = inputVoltage;
+		this.ratedCurrent = ratedCurrent;
+		this.outputVoltage = outputVoltage;
+		this.orderItems = orderItems;
+	}
+
+	public PowerSupply(Long id, String name, String brand, List<ProductImage> productImages,
+			List<ProductRating> ratings, Category categories, Category manufactures, String description, String price,
+			Integer saleOff, Integer amount, Integer quantitySold, String warranty, Timestamp createAt,
+			Timestamp updateAt) {
 		super(id, name, brand, productImages, ratings, categories, manufactures, description, price, saleOff, amount,
 				quantitySold, warranty, createAt, updateAt);
 	}
 
-	public PowerSupply(Long id, String name, String brand, List<ProductImage> productImages, List<ProductRating> ratings,
-			Category categories, Category manufactures, String description, String price, Integer saleOff,
-			Integer amount, Integer quantitySold, String warranty, Timestamp createAt, Timestamp updateAt, Long id2,
-			String connectorType, String dimentions, String inputVoltage, String ratedCurrent, String outputVoltage,
-			List<OrderItem> orderItems) {
+	public PowerSupply(Long id, String name, String brand, List<ProductImage> productImages,
+			List<ProductRating> ratings, Category categories, Category manufactures, String description, String price,
+			Integer saleOff, Integer amount, Integer quantitySold, String warranty, Timestamp createAt,
+			Timestamp updateAt, Long id2, String connectorType, String dimentions, String inputVoltage,
+			String ratedCurrent, String outputVoltage, List<OrderItem> orderItems) {
 		super(id, name, brand, productImages, ratings, categories, manufactures, description, price, saleOff, amount,
 				quantitySold, warranty, createAt, updateAt);
-		id = id2;
+		this.powerSupplyId = id2;
 		this.connectorType = connectorType;
 		this.dimentions = dimentions;
 		this.inputVoltage = inputVoltage;
@@ -74,12 +98,12 @@ public class PowerSupply extends Product {
 		super();
 	}
 
-	public Long getId() {
-		return id;
+	public Long getPowerSupplyId() {
+		return powerSupplyId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setPowerSupplyId(Long id) {
+		this.powerSupplyId = id;
 	}
 
 	public String getConnectorType() {

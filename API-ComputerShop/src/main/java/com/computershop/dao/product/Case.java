@@ -23,7 +23,7 @@ public class Case extends Product {
 	@Id
 	@Column(name = "case_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long caseId;
 
 	@Column(name = "dimensions")
 	private String dimensions;
@@ -56,11 +56,34 @@ public class Case extends Product {
 
 	public Case(Long id, String name, String brand, List<ProductImage> productImages, List<ProductRating> ratings,
 			Category categories, Category manufactures, String description, String price, Integer saleOff,
-			Integer amount, Integer quantitySold, String warranty, Timestamp createAt, Timestamp updateAt, Long id2,
+			Integer amount, Integer quantitySold, String warranty, Timestamp createAt, Timestamp updateAt, Long caseId,
 			String dimensions, String material, String type, String color, String weight, String coolingMethod) {
 		super(id, name, brand, productImages, ratings, categories, manufactures, description, price, saleOff, amount,
 				quantitySold, warranty, createAt, updateAt);
-		id = id2;
+		this.caseId = caseId;
+		this.dimensions = dimensions;
+		this.material = material;
+		this.type = type;
+		this.color = color;
+		this.weight = weight;
+		this.coolingMethod = coolingMethod;
+	}
+
+	public Case(Product product) {
+		super(product.getId(), product.getName(), product.getBrand(), product.getProductImages(), product.getRatings(),
+				product.getCategories(), product.getManufactures(), product.getDescription(), product.getPrice(),
+				product.getSaleOff(), product.getAmount(), product.getQuantitySold(), product.getWarranty(),
+				product.getCreateAt(), product.getUpdateAt());
+
+	}
+
+	public Case(Product product, Long caseId, String dimensions, String material, String type, String color,
+			String weight, String coolingMethod) {
+		super(product.getId(), product.getName(), product.getBrand(), product.getProductImages(), product.getRatings(),
+				product.getCategories(), product.getManufactures(), product.getDescription(), product.getPrice(),
+				product.getSaleOff(), product.getAmount(), product.getQuantitySold(), product.getWarranty(),
+				product.getCreateAt(), product.getUpdateAt());
+		this.caseId = caseId;
 		this.dimensions = dimensions;
 		this.material = material;
 		this.type = type;
@@ -73,12 +96,12 @@ public class Case extends Product {
 		super();
 	}
 
-	public Long getId() {
-		return id;
+	public Long getCaseId() {
+		return caseId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setCaseId(Long id) {
+		this.caseId = id;
 	}
 
 	public String getDimensions() {

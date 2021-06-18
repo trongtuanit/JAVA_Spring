@@ -26,7 +26,7 @@ public class GraphicCard extends Product {
 	@Id
 	@Column(name = "graphic_card_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long graphicCardId;
 
 	@Column(name = "dimensions")
 	private String dimensions;
@@ -47,24 +47,48 @@ public class GraphicCard extends Product {
 	@Column
 	private String voltage;
 
-	public GraphicCard(Long id, String name, String brand, List<ProductImage> productImages, List<ProductRating> ratings,
-			Category categories, Category manufactures, String description, String price, Integer saleOff,
-			Integer amount, Integer quantitySold, String warranty, Timestamp createAt, Timestamp updateAt) {
+	public GraphicCard(Long id, String name, String brand, List<ProductImage> productImages,
+			List<ProductRating> ratings, Category categories, Category manufactures, String description, String price,
+			Integer saleOff, Integer amount, Integer quantitySold, String warranty, Timestamp createAt,
+			Timestamp updateAt) {
 		super(id, name, brand, productImages, ratings, categories, manufactures, description, price, saleOff, amount,
 				quantitySold, warranty, createAt, updateAt);
 	}
 
-	public GraphicCard(Long id, String name, String brand, List<ProductImage> productImages, List<ProductRating> ratings,
-			Category categories, Category manufactures, String description, String price, Integer saleOff,
-			Integer amount, Integer quantitySold, String warranty, Timestamp createAt, Timestamp updateAt, Long id2,
-			String dimensions, String weight, String vGAMemory, String bandwidth, List<OrderItem> orderItems,
-			String voltage) {
-		super(id, name, brand, productImages, ratings, categories, manufactures, description, price, saleOff, amount,
-				quantitySold, warranty, createAt, updateAt);
-		id = id2;
+	public GraphicCard(Product product) {
+		super(product.getId(), product.getName(), product.getBrand(), product.getProductImages(), product.getRatings(),
+				product.getCategories(), product.getManufactures(), product.getDescription(), product.getPrice(),
+				product.getSaleOff(), product.getAmount(), product.getQuantitySold(), product.getWarranty(),
+				product.getCreateAt(), product.getUpdateAt());
+
+	}
+
+	public GraphicCard(Product product, Long id2, String dimensions, String weight, String vGAMemory, String bandwidth,
+			List<OrderItem> orderItems, String voltage) {
+		super(product.getId(), product.getName(), product.getBrand(), product.getProductImages(), product.getRatings(),
+				product.getCategories(), product.getManufactures(), product.getDescription(), product.getPrice(),
+				product.getSaleOff(), product.getAmount(), product.getQuantitySold(), product.getWarranty(),
+				product.getCreateAt(), product.getUpdateAt());
+		this.graphicCardId = id2;
 		this.dimensions = dimensions;
 		this.weight = weight;
-		VGAMemory = vGAMemory;
+		this.VGAMemory = vGAMemory;
+		this.bandwidth = bandwidth;
+		this.orderItems = orderItems;
+		this.voltage = voltage;
+	}
+
+	public GraphicCard(Long id, String name, String brand, List<ProductImage> productImages,
+			List<ProductRating> ratings, Category categories, Category manufactures, String description, String price,
+			Integer saleOff, Integer amount, Integer quantitySold, String warranty, Timestamp createAt,
+			Timestamp updateAt, Long id2, String dimensions, String weight, String vGAMemory, String bandwidth,
+			List<OrderItem> orderItems, String voltage) {
+		super(id, name, brand, productImages, ratings, categories, manufactures, description, price, saleOff, amount,
+				quantitySold, warranty, createAt, updateAt);
+		this.graphicCardId = id2;
+		this.dimensions = dimensions;
+		this.weight = weight;
+		this.VGAMemory = vGAMemory;
 		this.bandwidth = bandwidth;
 		this.orderItems = orderItems;
 		this.voltage = voltage;
@@ -74,12 +98,12 @@ public class GraphicCard extends Product {
 		super();
 	}
 
-	public Long getId() {
-		return id;
+	public Long getGraphicCardId() {
+		return graphicCardId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setGraphicCardId(Long id) {
+		this.graphicCardId = id;
 	}
 
 	public String getDimensions() {

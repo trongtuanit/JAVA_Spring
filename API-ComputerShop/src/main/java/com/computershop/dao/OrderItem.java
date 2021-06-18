@@ -23,8 +23,6 @@ import com.computershop.dao.product.HardDisk;
 import com.computershop.dao.product.Mainboard;
 import com.computershop.dao.product.Ram;
 
-
-
 @Entity
 @Table(name = "OderItems")
 public class OrderItem {
@@ -35,49 +33,49 @@ public class OrderItem {
 
 	@ManyToOne
 	@JoinColumn(name = "order_id")
-	private Order order;
-	
+	private SaleOrder saleOrder;
+
 	@Column(name = "list_quantity_order", nullable = false) // neu goi constructor khong doi, list nay tu dong tao
-	private HashMap<Object, Integer> listQuantityOrder ;
-	
+	private HashMap<Object, Integer> listQuantityOrder;
+
 	@ManyToOne(optional = true, fetch = FetchType.LAZY)
 	@JoinColumn(name = "ram_id", nullable = true)
 	private Ram ram;
-	
+
 	@ManyToOne(optional = true, fetch = FetchType.LAZY)
 	@JoinColumn(name = "cpu_id", nullable = true)
 	private CPU cpu;
-	
+
 	@ManyToOne(optional = true, fetch = FetchType.LAZY)
 	@JoinColumn(name = "mainboard_id", nullable = true)
 	private Mainboard mainboard;
-	
+
 	@ManyToOne(optional = true, fetch = FetchType.LAZY)
 	@JoinColumn(name = "hard_disk_id", nullable = true)
 	private HardDisk hardDisk;
-	
+
 	@ManyToOne(optional = true, fetch = FetchType.LAZY)
 	@JoinColumn(name = "monitor_id", nullable = true)
 	private Monitor monitor;
-	
+
 	@ManyToOne(optional = true, fetch = FetchType.LAZY)
 	@JoinColumn(name = "power_supply_id", nullable = true)
 	private PowerSupply powerSupply;
-	
+
 	@ManyToOne(optional = true, fetch = FetchType.LAZY)
 	@JoinColumn(name = "case_id", nullable = true)
 	private Case casepc;
-	
+
 	@ManyToOne(optional = true, fetch = FetchType.LAZY)
 	@JoinColumn(name = "graphic_card_id", nullable = true)
 	private GraphicCard graphicCard;
 
-	public OrderItem(Long id, Order order, HashMap<Object, Integer> listQuantityOrder, Ram ram, CPU cpu,
+	public OrderItem(Long id, SaleOrder saleOrder, HashMap<Object, Integer> listQuantityOrder, Ram ram, CPU cpu,
 			Mainboard mainboard, HardDisk hardDisk, Monitor monitor, PowerSupply powerSupply, Case casepc,
 			GraphicCard graphicCard) {
 		super();
 		this.id = id;
-		this.order = order;
+		this.saleOrder = saleOrder;
 		this.listQuantityOrder = listQuantityOrder;
 		this.ram = ram;
 		this.cpu = cpu;
@@ -91,14 +89,29 @@ public class OrderItem {
 
 	public OrderItem() {
 		this.listQuantityOrder = new HashMap<Object, Integer>();
-		this.listQuantityOrder.put(this.ram, 0);
-		this.listQuantityOrder.put(this.cpu, 0);
-		this.listQuantityOrder.put(this.mainboard, 0);
-		this.listQuantityOrder.put(this.hardDisk, 0);
-		this.listQuantityOrder.put(this.monitor, 0);
-		this.listQuantityOrder.put(this.powerSupply, 0);
-		this.listQuantityOrder.put(this.casepc, 0);
-		this.listQuantityOrder.put(this.graphicCard, 0);
+		if (this.ram != null)
+			this.listQuantityOrder.put(this.ram, 0);
+
+		if (this.cpu != null)
+			this.listQuantityOrder.put(this.cpu, 0);
+
+		if (this.mainboard != null)
+			this.listQuantityOrder.put(this.mainboard, 0);
+
+		if (this.hardDisk != null)
+			this.listQuantityOrder.put(this.hardDisk, 0);
+
+		if (this.monitor != null)
+			this.listQuantityOrder.put(this.monitor, 0);
+
+		if (this.powerSupply != null)
+			this.listQuantityOrder.put(this.powerSupply, 0);
+
+		if (this.casepc != null)
+			this.listQuantityOrder.put(this.casepc, 0);
+
+		if (this.graphicCard != null)
+			this.listQuantityOrder.put(this.graphicCard, 0);
 	}
 
 	public Long getId() {
@@ -109,12 +122,12 @@ public class OrderItem {
 		this.id = id;
 	}
 
-	public Order getOrder() {
-		return order;
+	public SaleOrder getOrder() {
+		return saleOrder;
 	}
 
-	public void setOrder(Order order) {
-		this.order = order;
+	public void setOrder(SaleOrder saleOrder) {
+		this.saleOrder = saleOrder;
 	}
 
 	public HashMap<Object, Integer> getListQuantityOrder() {
@@ -188,7 +201,5 @@ public class OrderItem {
 	public void setGraphicCard(GraphicCard graphicCard) {
 		this.graphicCard = graphicCard;
 	}
-	
-	
-	
+
 }
