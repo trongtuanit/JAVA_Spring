@@ -1,2 +1,5 @@
 eclipse.preferences.version=1
-encoding//src/test/main.java=UTF-8
+encoding//src/test/controllers/DataController.java=UTF-8
+encoding//src/test/models/TBLSinhVien.java=UTF-8
+encoding//src/test/view/View.java=UTF-8
+encoding/TBLSinhVien.txt=UTF-8

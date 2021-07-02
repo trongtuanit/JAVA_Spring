@@ -2,6 +2,7 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="E:\Github\JAVA_Spring\com.hit"/>
 			<item value="E:\video-streaming-master"/>
 			<item value="E:\Github\Java_Web_HIT\JAVA_WEB_HIT\demo-b10"/>
 			<item value="E:\Github\JAVA_Spring\demo-b5"/>
@@ -52,10 +53,13 @@
 	</section>
 	<section name="Maven2ProjectWizardArchifactPage">
 		<list key="package">
+			<item value="com.hit"/>
 		</list>
 		<list key="groupId">
+			<item value="com.hit"/>
 		</list>
 		<list key="artifactId">
+			<item value="com.hit"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>

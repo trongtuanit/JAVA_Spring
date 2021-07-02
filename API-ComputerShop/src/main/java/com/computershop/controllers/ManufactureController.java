@@ -31,7 +31,6 @@ public class ManufactureController {
 	private ManufactureRepository manufactureRepos;
 	
 	@GetMapping
-	@PreAuthorize("@userAuthorizer.authorizeAdmin(authentication, 'ADMIN')")
 	public ResponseEntity<?> getAllManufactures() {	
 		List<Manufacture> manufactues = manufactureRepos.findAll();
         if (manufactues.size() == 0) 
@@ -42,7 +41,6 @@ public class ManufactureController {
 	
 	
 	@GetMapping("/{manufactureId}")
-    @PreAuthorize("@userAuthorizer.authorizeGetUserById(authentication, 'ADMIN', #userId)")
     public ResponseEntity<?> getUserById(@PathVariable("manufactureId") Long manufactureId) {
         Optional<Manufacture> manufacture = manufactureRepos.findById(manufactureId);
         if (!manufacture.isPresent()) 
@@ -52,7 +50,7 @@ public class ManufactureController {
 	
 	
     @PostMapping
-    @PreAuthorize("@userAuthorizer.authorizeAdmin(authentication, 'ADMIN')")
+    @PreAuthorize("@authorizeService.authorizeAdmin(authentication, 'ADMIN')")
     public ResponseEntity<?> createNewManufacture(@RequestBody ManufactureDTO manufactureDTO) {
 		Manufacture oldManufacture = manufactureRepos.findByName(manufactureDTO.getName());
 		if (oldManufacture != null) 
@@ -62,20 +60,20 @@ public class ManufactureController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(manufacture);
     }
     
-    @PostMapping
-    @PreAuthorize("@userAuthorizer.authorizeAdmin(authentication, 'ADMIN')")
-    public ResponseEntity<?> createNewManufactures(@RequestBody ManufactureDTO manufactureDTO) {
-		Manufacture oldManufacture = manufactureRepos.findByName(manufactureDTO.getName());
-		if (oldManufacture != null) 
-		    throw new DuplicateException("Manufacture has already exists");
-		        
-		Manufacture manufacture = ConvertObject.fromManufactureDTOToDAO(manufactureDTO);
-		return ResponseEntity.status(HttpStatus.CREATED).body(manufacture);
-    }
+//    @PostMapping
+//    @PreAuthorize("@authorizeService.authorizeAdmin(authentication, 'ADMIN')")
+//    public ResponseEntity<?> createNewManufactures(@RequestBody ManufactureDTO manufactureDTO) {
+//		Manufacture oldManufacture = manufactureRepos.findByName(manufactureDTO.getName());
+//		if (oldManufacture != null) 
+//		    throw new DuplicateException("Manufacture has already exists");
+//		        
+//		Manufacture manufacture = ConvertObject.fromManufactureDTOToDAO(manufactureDTO);
+//		return ResponseEntity.status(HttpStatus.CREATED).body(manufacture);
+//    }
     
 
     @PatchMapping("/{manufactureId}")
-    @PreAuthorize("@userAuthorizer.authorizeAdmin(authentication, 'ADMIN')")
+    @PreAuthorize("@authorizeService.authorizeAdmin(authentication, 'ADMIN')")
     public ResponseEntity<?> editManufacture(@RequestBody ManufactureDTO manufactureDTO, @PathVariable("manufactureId") Long manufactureId) {
         Optional<Manufacture> optional = manufactureRepos.findByManufactureId(manufactureId);
         if (!optional.isPresent()) {

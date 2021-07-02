@@ -17,7 +17,6 @@ public class ConvertObject {
 				.replaceAll("[^\\w\\-]+", "").replaceAll("\\-\\-+", "-").replaceAll("^-+", "").replaceAll("-+$", "");
 	}
 	
-	
 	public static Province provinceDtoToDao (ProvinceDTO provinceDTO) {
 		
 		Province province = new Province();

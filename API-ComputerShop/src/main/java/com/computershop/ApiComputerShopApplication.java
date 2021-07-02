@@ -8,10 +8,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.filter.CharacterEncodingFilter;
 
-import com.cloudinary.Cloudinary;
 import com.computershop.dao.Category;
 import com.computershop.dao.Delivery;
 import com.computershop.dao.User;
@@ -20,9 +21,13 @@ import com.computershop.repositories.DeliveryRepository;
 import com.computershop.repositories.UserRepository;
 
 @SpringBootApplication
+@ComponentScan(basePackages = {"com.computershop.repositories", 
+								"com.computershop.services",
+								"com.computershop.utils",
+								"com.computershop.filters",
+								"com.computershop.repositories.productRepos"})
+@EnableJpaRepositories(basePackages = {"com.computershop.repositories", "com.computershop.repositories.productRepos"})
 public class ApiComputerShopApplication implements CommandLineRunner {
-	@Value("${cloudinary.url}")
-	private String cloudinaryUrl;
 
 	@Value("${user.first_name}")
 	private String firstName;
@@ -57,10 +62,6 @@ public class ApiComputerShopApplication implements CommandLineRunner {
 	@Autowired
 	private DeliveryRepository deliveryRepository;
 
-	@Bean
-	public Cloudinary cloudinary() {
-		return new Cloudinary(cloudinaryUrl);
-	}
 
 	@Autowired
 	private CategoryRepository categoryRepository;
@@ -91,6 +92,7 @@ public class ApiComputerShopApplication implements CommandLineRunner {
 			Delivery delivery5 = new Delivery(null, "DaHuy", "Đã hủy", null, null, null);
 			deliveryRepository.saveAll(Arrays.asList(delivery1, delivery2, delivery3, delivery4, delivery5));
 		}
+		
 		if (categoryRepository.count() == 0) {
 			Category category1 = new Category(null, null, "Case", null, null);
 			Category category2 = new Category(null, null, "CPU", null, null);
@@ -108,3 +110,4 @@ public class ApiComputerShopApplication implements CommandLineRunner {
 	}
 
 }
+

@@ -10,6 +10,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+//import javax.persistence.Inheritance;
+//import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -23,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "Products")
+//@Inheritance(strategy=InheritanceType.JOINED)
 public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,7 +50,7 @@ public class Product {
 
 	@ManyToOne
 	@JoinColumn(name = "category_id")
-	private Category categories;
+	private Category category;
 
 	@OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JsonIgnore
@@ -62,7 +65,7 @@ public class Product {
 	private String description;
 
 	@Column(name = "price", nullable = false)
-	private String price;
+	private Long price;
 
 	@Column(name = "sale_off", nullable = false)
 	private Integer saleOff;
@@ -83,7 +86,7 @@ public class Product {
 	private Timestamp updateAt;
 
 	public Product(Long id, String name, String brand, List<ProductImage> productImages, List<ProductRating> ratings,
-			Category categories, Category manufactures, String description, String price,
+			Category category, Category manufactures, String description, Long price,
 			Integer saleOff, Integer amount, Integer quantitySold, String warranty, Timestamp createAt,
 			Timestamp updateAt, List<OrderItem> orderItems) {
 		super();
@@ -92,7 +95,7 @@ public class Product {
 		this.brand = brand;
 		this.productImages = productImages;
 		this.Ratings = ratings;
-		this.categories = categories;
+		this.category = category;
 		this.orderItems = orderItems;
 		this.manufactures = manufactures;
 		this.description = description;
@@ -157,12 +160,12 @@ public class Product {
 		Ratings = ratings;
 	}
 
-	public Category getCategories() {
-		return categories;
+	public Category getCategory() {
+		return category;
 	}
 
-	public void setCategories(Category categories) {
-		this.categories = categories;
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 
 	public String getDescription() {
@@ -173,11 +176,11 @@ public class Product {
 		this.description = description;
 	}
 
-	public String getPrice() {
+	public Long getPrice() {
 		return price;
 	}
 
-	public void setPrice(String price) {
+	public void setPrice(Long price) {
 		this.price = price;
 	}
 
